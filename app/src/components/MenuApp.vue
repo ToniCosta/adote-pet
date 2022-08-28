@@ -54,15 +54,17 @@
                                 <v-text-field
                                 label="Email*"
                                 required
+                                v-model="login.login"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12">
                                 <v-text-field
                                 label="Senha*"
                                 type="password"
+                                v-model="login.senha"
                                 required
                                 ></v-text-field>
-                            </v-col>                    
+                            </v-col>
                         </v-row>
                     </v-container>
                 </v-card-text>
@@ -78,7 +80,7 @@
                     <v-btn
                         color="blue darken-1"
                         text
-                        @click="openDialogRegister = false"
+                        @click="loginTutor()"
                     >
                         Continuar
                     </v-btn>
@@ -170,10 +172,22 @@
             
 </template>
 <script>
+import { fazerLogin } from '../services/accountService.js'
 export default {
     data: () => ({
         openDialogRegister: false,
-        openDialogLogIn: false
-    })
+        openDialogLogIn: false,
+        login: {
+            login: '',
+            senha: ''
+        }
+    }),
+    methods: {
+        loginTutor() {
+            fazerLogin(this.login.login, this.login.senha).then(({data}) => {
+                console.log(data)
+            })
+        }
+    }
 }
 </script>
