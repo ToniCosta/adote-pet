@@ -9,10 +9,10 @@
             <v-col cols="4">
             <v-tabs>        
                 <v-tab class="grey--text" to="/">Home</v-tab>
-                <v-tab class="grey--text" to="/about">
+                <v-tab class="grey--text" to="/sobre">
                 Sobre nós
                 </v-tab>
-                <v-tab class="grey--text" to="/help">Ajuda</v-tab>
+                <v-tab class="grey--text" to="/ajuda">Ajuda</v-tab>
                 <v-tabs-slider color="redAccent"></v-tabs-slider>
             </v-tabs>
             </v-col>
@@ -36,7 +36,7 @@
             </v-col>
         </v-row>
         <v-dialog
-            v-model="openDialogRegister"
+            v-model="openDialogLogIn"
             persistent
             max-width="600px"
         >
@@ -73,7 +73,7 @@
                     <v-btn
                         color="blue darken-1"
                         text
-                        @click="openDialogRegister = false"
+                        @click="openDialogLogIn = false"
                     >
                         Fechar
                     </v-btn>
@@ -88,7 +88,7 @@
             </v-card>
         </v-dialog>
         <v-dialog
-            v-model="openDialogLogIn"
+            v-model="openDialogRegister"
             persistent
             max-width="600px"
         >
@@ -154,14 +154,14 @@
                 <v-btn
                     color="blue darken-1"
                     text
-                    @click="openDialogLogIn = false"
+                    @click="openDialogRegister = false"
                 >
                     Fechar
                 </v-btn>
                 <v-btn
                     color="blue darken-1"
                     text
-                    @click="openDialogLogIn = false"
+                    @click="openDialogRegister = false"
                 >
                     Registrar
                 </v-btn>
