@@ -4,7 +4,10 @@
     color="white"
     > 
         <v-row>
-            <v-col cols="6">          
+            <v-col 
+                lg="6"
+                xs="1"
+            >          
             </v-col>
             <v-col cols="4">
             <v-tabs>        
@@ -17,22 +20,22 @@
             </v-tabs>
             </v-col>
             <v-col cols="2" class="d-inline-flex">
-            <v-btn
-                class="ma-1"
-                color="grey"
-                plain
-                @click="openDialogRegister = true"
-            >
-                Criar Conta
-            </v-btn>
-            <v-btn
-                class="ma-1"
-                color="grey"
-                plain
-                @click="openDialogLogIn = true"
-            >
-                Entrar
-            </v-btn>
+                <v-btn
+                    class="ma-1"
+                    color="grey"
+                    plain
+                    @click="openDialogRegister = true"
+                >
+                    Criar Conta
+                </v-btn>
+                <v-btn
+                    class="ma-1"
+                    color="grey"
+                    plain
+                    @click="openDialogLogIn = true"
+                >
+                    Entrar
+                </v-btn>
             </v-col>
         </v-row>
         <v-dialog
