@@ -8,7 +8,8 @@ create table if not exists usuarios (
 	id        int auto_increment not null,
 
 	nome      varchar(255) not null,
-	login     varchar(255) not null,
+	sobrenome varchar(255) null,
+	telefone  varchar(255) null,
 	email     varchar(255) not null,
 	senha     varchar(255) not null,
 	tipo      varchar(20) not null,

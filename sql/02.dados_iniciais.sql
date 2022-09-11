@@ -6,8 +6,8 @@ DROP PROCEDURE IF EXISTS preencher_dados_iniciais $$
 CREATE PROCEDURE preencher_dados_iniciais () 
     BEGIN
 	    if not exists (select * from usuarios) then
-	    	insert into usuarios (id, nome, login, email, senha, tipo)
-	    	values (1, 'Teste Tutor', 'tutor', 'tutor@teste.com', md5('1234567'), 'TUTOR');
+	    	insert into usuarios (id, nome, email, senha, tipo)
+	    	values (1, 'Teste Tutor', 'tutor@teste.com', md5('1234567'), 'TUTOR');
 	    
 	    	insert into tutores (usuario_id, idade, sexo, estado_civil)
 	    	values (1, 25, 'Masculino', 'Solteiro');

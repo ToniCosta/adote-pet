@@ -1,23 +1,37 @@
+*.swp
+*.*~
+project.lock.json
 .DS_Store
-node_modules
-/dist
+*.pyc
+nupkg/
 
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Editor directories and files
-.idea
+# Visual Studio Code
 .vscode
+
+# Rider
+.idea
+
+# User-specific files
 *.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+msbuild.log
+msbuild.err
+msbuild.wrn
+
+# Visual Studio 2015
+.vs/
