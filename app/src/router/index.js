@@ -22,25 +22,25 @@ const routes = [
 		path: '/ajuda',
 		name: 'help',
 		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
+		// this generates a separate chunk (help.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ '../views/HelpView.vue')
+		component: () => import(/* webpackChunkName: "help" */ '../views/HelpView.vue')
 	},
 	{
 		path: '/cadastro-pet',
 		name: 'petRegistration',
 		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
+		// this generates a separate chunk (petRegistration.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ '../views/PetRegistrationView.vue')
+		component: () => import(/* webpackChunkName: "petRegistration" */ '../views/PetRegistrationView.vue')
 	},
 	{
 		path: '/pets-adocao',
 		name: 'petsAdoption',
 		// route level code-splitting
-		// this generates a separate chunk (about.[hash].js) for this route
+		// this generates a separate chunk (petsAdoption.[hash].js) for this route
 		// which is lazy-loaded when the route is visited.
-		component: () => import(/* webpackChunkName: "about" */ '../views/PetsAdoption.vue')
+		component: () => import(/* webpackChunkName: "petsAdoption" */ '../views/PetsAdoption.vue')
 	}
 ]
 

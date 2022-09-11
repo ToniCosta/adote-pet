@@ -82,6 +82,7 @@ export default {
             fazerLogin(this.login.email, this.login.senha).then(({data}) => {
                 registrarTokenUsuario(data)
                 this.$toasted.success('Login realizado com sucesso')
+                this.$root.$emit('loggedOn', data);
                 this.$emit('close')
             }).catch(error => {
                 console.log(error)

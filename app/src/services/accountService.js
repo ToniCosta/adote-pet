@@ -1,9 +1,19 @@
 import { api } from './api.js'
 
 export const registrarTokenUsuario = (response) => {
-    localStorage.setItem("user", JSON.stringify({
-        token: response.token
-    }))
+    localStorage.setItem("user", JSON.stringify(response))
+}
+
+export const getUsuarioLogado = () => {
+    let user = localStorage.getItem('user');
+    if (user != null) {
+        return JSON.parse(user)
+    }
+    return null;
+}
+
+export const logOff = () => {
+    localStorage.removeItem('user')
 }
 
 export const fazerLogin = (email, senha) => {

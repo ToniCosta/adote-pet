@@ -47,7 +47,9 @@ namespace Adotepet.Api.Servicos
 
             return new LoginResponse()
             {
-                Token = tokenHandler.WriteToken(token)
+                Token = tokenHandler.WriteToken(token),
+                Nome = usuario.Nome,
+                Role = usuario.Tipo
             };
         }
 

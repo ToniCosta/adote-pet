@@ -21,6 +21,7 @@
             </v-col>
             <v-col cols="2" class="d-inline-flex">
                 <v-btn
+                    v-if="!isLogged"
                     class="ma-1"
                     color="grey"
                     plain
@@ -29,12 +30,22 @@
                     Criar Conta
                 </v-btn>
                 <v-btn
+                    v-if="!isLogged"
                     class="ma-1"
                     color="grey"
                     plain
                     @click="openDialogLogIn = true"
                 >
                     Entrar
+                </v-btn>
+                <v-btn
+                    v-if="isLogged"
+                    class="ma-1"
+                    color="grey"
+                    plain
+                    @click="sair()"
+                >
+                    Sair
                 </v-btn>
             </v-col>
         </v-row>
@@ -48,6 +59,7 @@
 <script>
 import DialogEntrar from './DialogEntrar.vue'
 import DialogCreateAccount from './DialogCreateAccount.vue';
+import { getUsuarioLogado, logOff } from '../services/accountService.js'
 export default {
     components: { 
         DialogEntrar,
@@ -56,8 +68,34 @@ export default {
     data: () => ({
         openDialogRegister: false,
         openDialogLogIn: false,
+        isLogged: false,
+        nome: ''
     }),
+    created() {
+        var user = getUsuarioLogado();
+        if (user != null) {
+            this.setUserLogged(user)
+        }
+    },
+    mounted() {
+        this.$root.$on('loggedOn', (user) => {
+            this.setUserLogged(user)
+        })
+    },
     methods: {
-    }
+        setUserLogged(data) {
+            this.isLogged = true;
+            this.nome = data.nome;
+        },
+        sair() {
+            logOff();
+            this.isLogged = false;
+            this.nome = '';
+            this.$toasted.success('Log out realizado com sucesso')
+        }
+    },
+    destroyed() {
+        this.$root.$off('loggedOn');
+    } 
 }
 </script>
