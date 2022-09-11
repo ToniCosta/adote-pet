@@ -114,12 +114,10 @@
 <script>
 
 export default {
-  name: 'HomeView',
-  components: {
-    
-  },
-  data: () => ({
-    
-  }),
+	name: 'HomeView',
+	components: {},
+	data: () => ({
+
+	})
 }
 </script>

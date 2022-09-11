@@ -162,14 +162,14 @@
 
 <script>
 export default {
-  name: 'HomeView',
-  components: {
-    
-  },
-  data: () => ({
-    form: false,
-  }),
-  created() {
-  }  
+	name: 'HomeView',
+	components: {
+
+	},
+	data: () => ({
+		form: false,
+	}),
+	created() {
+	}  
 }
 </script>
