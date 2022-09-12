@@ -1,12 +1,33 @@
 <template>
 	<v-container>
+
 		<v-row class="mx-12 my-4">
 			<v-col cols="12">
-				<h1 class="mb-4">Animais da instituição</h1>
+				<v-text-field
+					v-model="campoPesquisa"
+					label="Digite para filtrar na lista de pets"
+					outlined
+					hide-details="auto"
+					dense
+					@keyup="filtrar()"
+				></v-text-field>
 			</v-col>
+		</v-row>
+		<v-row class="mx-12 my-4">
+			<v-col cols="12">
+				<h1>Animais para adoção</h1>
+			</v-col>
+			<lista-animais :isLoading="isLoading" :habilitaEditar="true" :list="listFiltered.filter(m => { return m.statusPet == 'Para adoção' })"></lista-animais>
 
-			<lista-animais :habilitaEditar="true" :list="list"></lista-animais>
+			<v-col cols="12">
+				<h1>Animais em processo de adoção</h1>
+			</v-col>
+			<lista-animais :isLoading="isLoading" :habilitaEditar="true" :list="listFiltered.filter(m => { return m.statusPet == 'Em processo de adoção' })"></lista-animais>
 
+			<v-col cols="12">
+				<h1>Animais adotados</h1>
+			</v-col>
+			<lista-animais :isLoading="isLoading" :habilitaEditar="true" :list="listFiltered.filter(m => { return m.statusPet == 'Adotado' })"></lista-animais>
 		</v-row>
 
 	</v-container>
@@ -23,13 +44,38 @@ export default {
 	},
 	data: () => ({
 		list: [],
+		listFiltered: [],
+		isLoading: true,
+		campoPesquisa: ''
 	}),
 	mounted() {
 		listarPetsEntidade().then(({data}) => {
 			this.list = data
+			this.listFiltered = [...this.list]
+		}).finally(() => {
+			this.isLoading = false;
 		})
 	},
 	methods: {
+		isMatch(vl, filtro) {
+			if (vl == null || vl == '') {
+				return true;
+			}
+			return vl.toUpperCase().includes(filtro)
+		},
+		filtrar() {
+			let filtro = this.campoPesquisa.toUpperCase()
+			if (filtro == '') {
+				this.listFiltered = [...this.list]
+				return;
+			}
+			this.listFiltered = this.list.filter(m => {
+				return this.isMatch(m.nome, filtro) || 
+					this.isMatch(m.raca, filtro) ||
+					this.isMatch(m.localizacao, filtro) ||
+					this.isMatch(m.descricao, filtro)
+			})
+		}
 	}
 }
 </script>
