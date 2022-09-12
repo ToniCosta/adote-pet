@@ -22,22 +22,16 @@ A aplicação consiste em uma pesquisa por pets, cadastro de ONGS, formulário d
 
 # Como executar o projeto
 
-## Clonar repositório
-
-git clone https://github.com/ToniCosta/adote-pet.git
-
-## Entrar na pasta do projeto
-
-cd app
-
-## Instalar dependências
-
-npm install
-
-## Executar o projeto
-
-npm run serve
-
+ ```bash
+ 
+ $ git clone https://github.com/ToniCosta/adote-pet.git
+ 
+ $ cd app
+ 
+ $ npm install
+ 
+ $ npm run serve
+ ```
 # Autores
 
 ## Grupo 01
