@@ -180,6 +180,8 @@
 								v-model="model.cep"
 								:rules="[() => !!model.cep || 'Campo obrigatório']"
 								label="CEP"
+								counter="8"
+								maxlength="8"
 								outlined
 								dense
 							></v-text-field>
