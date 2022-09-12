@@ -402,19 +402,19 @@ export default {
 		estados: estadosOptions
 	}),
 	created() {
-		// listaTiposAnimais().then(({data}) => {
-		// 	data.forEach(element => {
-		// 		this.tiposAnimaisOptions.push({
-		// 			value: element.id,
-		// 			text: element.descricao
-		// 		})
-		// 	});
-		// })
+		listaTiposAnimais().then(({data}) => {
+			data.forEach(element => {
+				this.tiposAnimaisOptions.push({
+					value: element.id,
+					text: element.descricao
+				})
+			});
+		})
 	},
 	mounted() {
-		// getPerfilTutor().then(({data}) => {
-		// 	this.model = data;
-		// })
+		getPerfilTutor().then(({data}) => {
+			this.model = data;
+		})
 
 	},
 	methods: {
