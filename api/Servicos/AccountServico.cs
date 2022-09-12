@@ -1,4 +1,5 @@
-﻿using Adotepet.Api.Repositorios;
+﻿using Adotepet.Api.Models;
+using Adotepet.Api.Repositorios;
 using Adotepet.Api.ViewModels;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -74,6 +75,16 @@ namespace Adotepet.Api.Servicos
         {
             ChecarEmailEmUso(dadosConta.Email);
             _usuarioRepositorio.CadastrarUsuarioRepresentante(dadosConta);
+        }
+
+        public void AtualizaTutor(Tutor model, int usuarioId, int tutorId)
+        {
+            _usuarioRepositorio.AtualizaTutor(model, usuarioId, tutorId);
+        }
+
+        public Tutor? BuscarDadosTutor(int tutorId)
+        {
+            return _usuarioRepositorio.BuscarDadosTutor(tutorId);
         }
     }
 }

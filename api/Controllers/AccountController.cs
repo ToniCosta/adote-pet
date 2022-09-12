@@ -1,6 +1,8 @@
-﻿using Adotepet.Api.Repositorios;
+﻿using Adotepet.Api.Models;
+using Adotepet.Api.Repositorios;
 using Adotepet.Api.Servicos;
 using Adotepet.Api.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -52,6 +54,36 @@ namespace Adotepet.Api.Controllers
                     var servico = new AccountServico(new UsuariosRepositorio(_connection));
                     servico.CriarUsuarioRepresentante(model);
                     return servico.FazerLoginGerarToken(new LoginViewModel() { Email = model.Email, Senha = model.Senha });
+                }
+            );
+        }
+
+        [HttpGet]
+        [Route("perfil-tutor")]
+        [Authorize(Roles = Usuario.TIPO_TUTOR)]
+        public IActionResult AtualizarPerfilTutor()
+        {
+            return Executar(
+                () =>
+                {
+                    var servico = new AccountServico(new UsuariosRepositorio(_connection));
+                    return servico.BuscarDadosTutor(GetTutorId());
+                }
+            );
+        }
+
+        [HttpPut]
+        [Route("atualizar-perfil-tutor")]
+        [Authorize(Roles = Usuario.TIPO_TUTOR)]
+        public IActionResult AtualizarPerfilTutor([FromBody] Tutor model)
+        {
+
+            return Executar(
+                () =>
+                {
+                    var servico = new AccountServico(new UsuariosRepositorio(_connection));
+                    servico.AtualizaTutor(model, GetUsuarioId(), GetTutorId());
+                    return true;
                 }
             );
         }

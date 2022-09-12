@@ -42,24 +42,12 @@
 							sm="4"
 						>
 							<v-text-field
-								v-model="model.nome"
-								:rules="[() => !!model.nome || 'Campo obrigatório']"
-								label="Nome"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-
-						<v-col
-							cols="12"
-							sm="4"
-						>
-							<v-text-field
 								v-model="model.idade"
 								:rules="[() => !!model.idade || 'Campo obrigatório']"
-								label="Idade"
+								label="Idade*"
 								outlined
 								dense
+								type="number"
 							></v-text-field>
 						</v-col>
 						<v-col
@@ -69,7 +57,7 @@
 							<v-combobox
 								v-model="model.sexo"
 								:rules="[() => !!model.sexo || 'Campo obrigatório']"
-								label="Sexo"
+								label="Sexo*"
 								:items="sexo"
 								outlined
 								:return-object="false"
@@ -86,7 +74,7 @@
 							<v-combobox
 								v-model="model.estadoCivil"
 								:rules="[() => !!model.estadoCivil || 'Campo obrigatório']"
-								label="Estado Civil"
+								label="Estado Civil*"
 								:items="estadoCivil"
 								outlined
 								:return-object="false"
@@ -101,7 +89,7 @@
 							<v-text-field
 								v-model="model.rg"
 								:rules="[() => !!model.rg || 'Campo obrigatório']"
-								label="RG"
+								label="RG*"
 								outlined
 								dense
 							></v-text-field>
@@ -113,45 +101,18 @@
 							<v-text-field
 								v-model="model.cpf"
 								:rules="[() => !!model.cpf || 'Campo obrigatório']"
-								label="CPF"
+								label="CPF*"
 								outlined
 								dense
 							></v-text-field>
 						</v-col>
 
 					</v-row>
-					<v-row>
-						<v-col
-							cols="12"
-							sm="4"
-						>
-							<v-text-field
-								v-model="model.email"
-								:rules="[() => !!model.email || 'Campo obrigatório']"
-								label="Email"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-						<v-col
-							cols="12"
-							sm="4"
-						>
-							<v-text-field
-								v-model="model.senha"
-								:rules="[() => !!model.senha || 'Campo obrigatório']"
-								label="Senha"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
 
-					</v-row>
 					<v-row>
 						<v-col cols="12">
 							<v-combobox
-								v-model="model.quantidadePessoas"
-								:rules="[() => !!model.quantidadePessoas || 'Campo obrigatório']"
+								v-model="model.qdtPessoasReside"
 								label="Você mora sozinho, caso não com quantas pessoas reside?"
 								:items="quantidadePessoas"
 								outlined
@@ -171,7 +132,7 @@
 							<v-text-field
 								v-model="model.logradouro"
 								:rules="[() => !!model.logradouro || 'Campo obrigatório']"
-								label="Logradouro"
+								label="Logradouro*"
 								outlined
 								dense
 							></v-text-field>
@@ -184,7 +145,7 @@
 							<v-text-field
 								v-model="model.numero"
 								:rules="[() => !!model.numero || 'Campo obrigatório']"
-								label="Número"
+								label="Número*"
 								outlined
 								dense
 							></v-text-field>
@@ -195,7 +156,6 @@
 						>
 							<v-text-field
 								v-model="model.complemento"
-								:rules="[() => !!model.complemento || 'Campo obrigatório']"
 								label="Complemento"
 								outlined
 								dense
@@ -211,7 +171,7 @@
 							<v-text-field
 								v-model="model.bairro"
 								:rules="[() => !!model.bairro || 'Campo obrigatório']"
-								label="Bairro"
+								label="Bairro*"
 								outlined
 								dense
 							></v-text-field>
@@ -224,7 +184,7 @@
 							<v-text-field
 								v-model="model.cidade"
 								:rules="[() => !!model.cidade || 'Campo obrigatório']"
-								label="Cidade"
+								label="Cidade*"
 								outlined
 								dense
 							></v-text-field>
@@ -234,9 +194,9 @@
 							sm="4"
 						>
 							<v-text-field
-								v-model="model.estado"
-								:rules="[() => !!model.estado || 'Campo obrigatório']"
-								label="Estado"
+								v-model="model.uf"
+								:rules="[() => !!model.uf || 'Campo obrigatório']"
+								label="Estado*"
 								outlined
 								dense
 							></v-text-field>
@@ -251,7 +211,7 @@
 							<v-text-field
 								v-model="model.cep"
 								:rules="[() => !!model.cep || 'Campo obrigatório']"
-								label="CEP"
+								label="CEP*"
 								outlined
 								dense
 							></v-text-field>
@@ -261,9 +221,9 @@
 							sm="4"
 						>
 							<v-text-field
-								v-model="model.areaLazer"
-								:rules="[() => !!model.areaLazer || 'Campo obrigatório']"
-								label="Possui  área de lazer (pet) próximo a sua residência ?"
+								v-model="model.possuiAreaLazer"
+								:rules="[() => !!model.possuiAreaLazer || 'Campo obrigatório']"
+								label="Possui  área de lazer (pet) próximo a sua residência ?*"
 								outlined
 								dense
 							></v-text-field>
@@ -273,9 +233,9 @@
 							sm="4"
 						>
 							<v-text-field
-								v-model="model.possuiVeterinario"
-								:rules="[() => !!model.possuiVeterinario || 'Campo obrigatório']"
-								label="Possui veterinário próximo a sua residência ?"
+								v-model="model.veterinarioProximo"
+								:rules="[() => !!model.veterinarioProximo || 'Campo obrigatório']"
+								label="Possui veterinário próximo a sua residência ?*"
 								outlined
 								dense
 							></v-text-field>
@@ -287,7 +247,7 @@
 							<v-text-field
 								v-model="model.tipoResidencia"
 								:rules="[() => !!model.tipoResidencia || 'Campo obrigatório']"
-								label="Tipo de Residência"
+								label="Tipo de Residência*"
 								outlined
 								dense
 							></v-text-field>
@@ -300,38 +260,48 @@
 							cols="12"
 							sm="4"
 						>
-							<v-text-field
-								v-model="model.tipoPet"
-								:rules="[() => !!model.tipoPet || 'Campo obrigatório']"
-								label="Tipo de Animal desejado (cão ou gato)"
+							<v-combobox
+								v-model="model.tipoAnimalId"
+								label="Espécie desejada (opcional)"
+								item-text="text"
+								:items="tiposAnimaisOptions"
+								@change="changeTipoAnimal()"
 								outlined
-								dense
-							></v-text-field>
+								:return-object="false"
+							>
+							</v-combobox>
 						</v-col>
 
 						<v-col
 							cols="12"
 							sm="4"
 						>
-							<v-text-field
-								v-model="model.raca"
-								:rules="[() => !!model.raca || 'Campo obrigatório']"
-								label="Raça"
+							<v-autocomplete
+								v-model="model.racaId"
+								:items="racasOptions"
+								:loading="isLoadingRaca"
+								:search-input.sync="pesquisarRaca"
+								item-text="descricao"
+								item-value="id"
+								label="Raça (opcional)"
+								placeholder="Começe a digitar para pesquisar"
 								outlined
-								dense
-							></v-text-field>
+								:return-object="false"
+							></v-autocomplete>
+
 						</v-col>
 						<v-col
 							cols="12"
 							sm="4"
 						>
-							<v-text-field
-								v-model="model.portePet"
-								:rules="[() => !!model.portePet || 'Campo obrigatório']"
-								label="Porte do animal"
+							<v-combobox
+								v-model="model.porte"
+								label="Porte do animal (opcional)"
+								:items="porteOptions"
 								outlined
-								dense
-							></v-text-field>
+								:return-object="false"
+							></v-combobox>
+
 						</v-col>
 
 					</v-row>
@@ -341,9 +311,9 @@
 							sm="12"
 						>
 							<v-text-field
-								v-model="model.motivo"
-								:rules="[() => !!model.motivo || 'Campo obrigatório']"
-								label="Motivo da procura de um PET ?"
+								v-model="model.motivoAdocao"
+								:rules="[() => !!model.motivoAdocao || 'Campo obrigatório']"
+								label="Motivo da procura de um PET ?*"
 								outlined
 								dense
 							></v-text-field>
@@ -352,6 +322,7 @@
 				</div>
 
 				<v-divider></v-divider>
+				<small>*campos obrigatórios</small>
 				<v-card-actions>
 					<v-btn
 						text
@@ -368,7 +339,7 @@
 						depressed
 						@click="nextStep()"
 					>
-						{{ this.currentStep === 3 == 0 ? 'PRÓXIMO' : 'CADASTRAR' }}
+						{{ this.currentStep === 3 == 0 ? 'PRÓXIMO' : 'SALVAR' }}
 					</v-btn>
 				</v-card-actions>
 			</v-form> 
@@ -379,79 +350,100 @@
 
 <script>
 
+import { listaTiposAnimais, pesquisarRacas, portePetsOptions, sexoOptions, estadoCivilOptions, quantidadePessoasOptions } from '../services/listasService.js'
+import { atualizarPerfilTutor, marcarPerfilCompleto, getPerfilTutor } from '../services/accountService.js'
+
 export default {
 	name: 'TutorRegistration',
 	components: {
 
 	},
 	data: () => ({
-		quantidadePessoas: [
-			{ text: '1', value: '1' },
-			{ text: '2', value: '2' },
-			{ text: '3', value: '3' },
-			{ text: '4', value: '4' },
-			{ text: '5', value: '5' },
-			{ text: '6', value: '6' },
-			{ text: '7', value: '7' },
-			{ text: '8', value: '8' }
-		],
+		tiposAnimaisOptions: [],
+		quantidadePessoas: quantidadePessoasOptions,
 		model: {
-			nome: null,
+			id: null,
 			idade: null,
 			sexo: null,
 			estadoCivil: null,
 			rg: null,
 			cpf: null,
-			email: null,
-			senha: null,
-			quantidadePessoas: null,
+			qdtPessoasReside: null,
 			logradouro: null,
 			numero: null,
 			complemento: null,
 			bairro: null,
 			cidade: null,
-			estado: null,
+			uf: null,
 			cep: null,
-			areaLazer: null,
-			possuiVeterinario: null,
+			possuiAreaLazer: null,
+			veterinarioProximo: null,
 			tipoResidencia: null,
-			tipoPet: null,
-			raca: null,
-			portePet: null,
-			motivo: null
+			racaId: null,
+			porte: null, 
+			tipoAnimalId: null,
+			motivoAdocao: null
 		},
 		isValid: false,
 		isLoading: false,
 		steps: 1,
 		currentStep: 1,
-		estadoCivil: [
-			{ text: 'Solteiro', value: 'Solteiro' },	
-			{ text: 'Casado', value: 'Casado' },
-			{ text: 'União estável', value: 'União estável' },
-			{ text: 'Viúvo', value: 'Viúvo' },
-			{ text: 'Separado', value: 'Separado' }
-		],
-		sexo: [
-			{ text: 'Masculino', value: 'Masculino' },	
-			{ text: 'Feminino', value: 'Feminino' },
-			{ text: 'Não informar', value: 'Não informar' }
-		]
+		estadoCivil: estadoCivilOptions,
+		sexo: sexoOptions,
+		porteOptions: portePetsOptions,
+		pesquisarRaca: '',
+		racasOptions: [],
+		isLoadingRaca: false
 	}),
 	created() {
-		
+		listaTiposAnimais().then(({data}) => {
+			data.forEach(element => {
+				this.tiposAnimaisOptions.push({
+					value: element.id,
+					text: element.descricao
+				})
+			});
+		})
+	},
+	mounted() {
+		getPerfilTutor().then(({data}) => {
+			this.model = data;
+		})
+
 	},
 	methods: {
 		nextStep () {
 			if (this.currentStep === 3) {
-				alert('ENVIAR')
+				atualizarPerfilTutor(this.model).then(() => {
+					marcarPerfilCompleto()
+					this.$root.$emit('perfilCompleto')
+				}).catch(error => {
+					console.log(error)
+				})
 				return
 			}
 			this.currentStep +=  1
 		}
-		
 	},
 	watch: {
-		
+		pesquisarRaca(val) {
+			if (this.isLoadingRaca)
+			{
+				return;
+			} 
+			if(this.model.tipoAnimalId == null || this.model.tipoAnimalId == '')
+			{
+				this.$toasted.error('Selecione a espécie');
+				return;
+			} 
+
+			this.isLoadingRaca = true;
+			pesquisarRacas(this.model.tipoAnimalId, val).then(({data}) => {
+				this.racasOptions = data;
+			}).finally(() => {
+				this.isLoadingRaca = false;
+			})
+		},
 	}
 }
 </script>

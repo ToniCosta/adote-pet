@@ -27,3 +27,21 @@ export const criarContaTutor = (model) =>  {
 export const criarContaRepresentante = (model) =>  {
     return api.post('api/account/criar-conta-representante', model)
 }
+
+export const atualizarPerfilTutor = (model) =>  {
+    return api.put('api/account/atualizar-perfil-tutor', model)
+}
+
+export const getPerfilTutor = () =>  {
+    return api.get('api/account/perfil-tutor')
+}
+
+
+export const marcarPerfilCompleto = () => {
+    let userJson = localStorage.getItem('user');
+    if (userJson != null) {
+        var user = JSON.parse(userJson);
+        user.cadastroCompleto = true;
+        localStorage.setItem("user", JSON.stringify(user))
+    }
+}

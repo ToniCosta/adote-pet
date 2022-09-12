@@ -36,7 +36,7 @@
 
                 <v-tabs v-if="role == 'TUTOR'">
                     <v-tab class="grey--text" to="/">Home</v-tab>
-                    <v-tab class="grey--text" to="/sobre">
+                    <v-tab class="grey--text" to="/cadastro-tutor">
                         <v-icon
                             v-if="!isPerfilPreenchido"
                             class="mr-2"

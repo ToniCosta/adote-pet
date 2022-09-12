@@ -57,16 +57,23 @@ create table if not exists tutores (
 	cidade              varchar(255) null,
 	uf                  varchar(2) null,
 	cep                 varchar(15) null,
+
 	possui_area_lazer   varchar(500) null,
 	veterinario_proximo varchar(500) null,
 	tipo_residencia     varchar(25) null,
 
+	tipo_animal_id      int null,
+	raca_id             int null,
+	porte               varchar(255) null,
+	motivo_adocao       varchar(1000) null,
+
 	latitude            numeric(14, 12) null,
 	longitude           numeric(14, 12) null,
 
-
 	primary key pk_tutores (id),
 	foreign key fk_tutor_usuario (usuario_id) references usuarios (id),
+	foreign key fk_tutor_tp_animal (tipo_animal_id) references tipos_animais (id),
+	foreign key fk_tutor_raca (raca_id) references racas_animais (id),
 	CHECK (sexo in ('Masculino', 'Feminino', 'Não informar')),
 	CHECK (estado_civil in ('Solteiro', 'Casado', 'União estável', 'Viúvo', 'Separado'))
 );

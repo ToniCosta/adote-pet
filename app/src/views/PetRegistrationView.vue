@@ -212,7 +212,7 @@
 </template>
 
 <script>
-import { listaTiposAnimais, pesquisarRacas, pesquisarCidades } from '../services/listasService.js'
+import { listaTiposAnimais, pesquisarRacas, pesquisarCidades, portePetsOptions, tamanhoPeloOptions } from '../services/listasService.js'
 import { criarPet, buscarPetEditar } from '../services/petService.js'
 
 export default {
@@ -222,19 +222,8 @@ export default {
 	},
 	data: () => ({
 		tiposAnimaisOptions: [],
-		tamanhoPeloOptions: [
-			{ text: 'Curto', value: 'Curto' },
-			{ text: 'Médio', value: 'Médio' },
-			{ text: 'Longo', value: 'Longo' },
-			{ text: 'Sem pêlos', value: 'Sem pêlos' }
-		],
-		porteOptions: [
-			{ text: 'Micro', value: 'Micro' },	
-			{ text: 'Pequeno', value: 'Pequeno' },
-			{ text: 'Médio', value: 'Médio' },
-			{ text: 'Grande', value: 'Grande' },
-			{ text: 'Gigante', value: 'Gigante' }
-		],
+		tamanhoPeloOptions: tamanhoPeloOptions,
+		porteOptions: portePetsOptions,
 		pesquisarRaca: '',
 		pesquisarCidade: '',
 		racasOptions: [],
