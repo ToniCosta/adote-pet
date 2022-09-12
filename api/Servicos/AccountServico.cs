@@ -79,6 +79,9 @@ namespace Adotepet.Api.Servicos
 
         public void AtualizaTutor(Tutor model, int usuarioId, int tutorId)
         {
+            GeolocationService.BuscarGeolocalizacao($"{model.Logradouro}, {model.Numero}. {model.Cidade}-{model.Uf} ", out var lat, out var lng);
+            model.Latitude = lat;
+            model.Longitude = lng;
             _usuarioRepositorio.AtualizaTutor(model, usuarioId, tutorId);
         }
 
