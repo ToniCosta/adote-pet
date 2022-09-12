@@ -35,6 +35,30 @@ const routes = [
 		component: () => import(/* webpackChunkName: "petRegistration" */ '../views/PetRegistrationView.vue')
 	},
 	{
+		path: '/editar-pet/:id',
+		name: 'petEdit',
+		// route level code-splitting
+		// this generates a separate chunk (petRegistration.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "petRegistration" */ '../views/PetRegistrationView.vue')
+	},
+	{
+		path: '/perfil-entidade',
+		name: 'perfilEntidade',
+		// route level code-splitting
+		// this generates a separate chunk (petRegistration.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "petRegistration" */ '../views/PerfilInstituicao.vue')
+	},
+	{
+		path: '/pets-instituicao',
+		name: 'petsInstituicao',
+		// route level code-splitting
+		// this generates a separate chunk (petsInstituicao.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "petsInstituicao" */ '../views/PetsAdoptionEntidade.vue')
+	},
+	{
 		path: '/pets-adocao',
 		name: 'petsAdoption',
 		// route level code-splitting

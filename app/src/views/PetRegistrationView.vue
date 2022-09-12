@@ -121,7 +121,7 @@
 					<v-text-field
 						v-model="model.peso"
 						:rules="[() => !!model.peso || 'Campo obrigatório']"
-						label="Peso aproximado"
+						label="Peso aproximado (Em kg)"
 						type="number"
 						outlined
 					></v-text-field>
@@ -133,7 +133,7 @@
 					<v-text-field
 						v-model="model.idade"
 						:rules="[() => !!model.idade || 'Campo obrigatório']"
-						label="Idade aproximada"
+						label="Idade aproximada  (Em meses)"
 						type="number"
 						outlined
 					></v-text-field>
@@ -202,7 +202,7 @@
 						depressed
 						@click="enviar()"
 					>
-						ADICIONAR
+						{{ model.id == 0 ? 'ADICIONAR' : 'ALTERAR' }}
 					</v-btn>
 				</v-card-actions>
 			</v-form> 
@@ -213,10 +213,10 @@
 
 <script>
 import { listaTiposAnimais, pesquisarRacas, pesquisarCidades } from '../services/listasService.js'
-import { criarPet } from '../services/petService.js'
+import { criarPet, buscarPetEditar } from '../services/petService.js'
 
 export default {
-	name: 'HomeView',
+	name: 'PetsRegistration',
 	components: {
 
 	},
@@ -267,6 +267,17 @@ export default {
 				})
 			});
 		})
+		if (this.$route.params.id) {
+			buscarPetEditar(this.$route.params.id).then(({data}) => {
+				this.cidadesOptions = [
+					{ descricao: data.localizacao }
+				]
+				this.racasOptions = [
+					{ descricao: data.raca, id: data.racaId }
+				]
+				this.model = data;
+			})
+		}
 	},
 	methods: {
 		changeTipoAnimal() {
@@ -279,16 +290,21 @@ export default {
 			}
 
 			this.isLoading = true;
-			var bodyFormData = new FormData();
-			Object.keys(this.model).forEach(ele => {
-				bodyFormData.append(ele, this.model[ele]);
-			})
-			bodyFormData.append('image', this.file); 
-			criarPet(bodyFormData).then(({data})=> {
-				console.log(data)
-			}).finally(() => {
-				this.isLoading = false;
-			})
+			if (this.model.id == 0) {
+				var bodyFormData = new FormData();
+				Object.keys(this.model).forEach(ele => {
+					bodyFormData.append(ele, this.model[ele]);
+				})
+				bodyFormData.append('image', this.file); 
+				criarPet(bodyFormData).then(({data})=> {
+					console.log(data)
+				}).finally(() => {
+					this.isLoading = false;
+				})
+			} else {
+				console.log('nao implementado')
+			}
+			
 		}
 	},
 	watch: {
@@ -305,7 +321,7 @@ export default {
 			})
 		},
 		pesquisarCidade(val) {
-			if (this.isLoadingCidades)
+			if (this.isLoadingCidades || !!val)
 			{
 				return;
 			} 

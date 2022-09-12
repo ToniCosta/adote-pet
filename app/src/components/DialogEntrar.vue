@@ -58,6 +58,7 @@
 <script>
 import { fazerLogin, registrarTokenUsuario } from '../services/accountService.js'
 export default {
+    name: 'DialogEntrar',
     props: {
         openDialogLogIn: {
             type: Boolean,

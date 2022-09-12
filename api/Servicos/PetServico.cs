@@ -1,4 +1,5 @@
-﻿using Adotepet.Api.Repositorios;
+﻿using Adotepet.Api.Models;
+using Adotepet.Api.Repositorios;
 using Adotepet.Api.ViewModels;
 
 namespace Adotepet.Api.Servicos
@@ -27,6 +28,16 @@ namespace Adotepet.Api.Servicos
             }
 
             return _repositorio.CriarPet(viewModel, entidadeId, savedAs);
+        }
+
+        public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)
+        {
+            return _repositorio.ListarPetsEntidade(entidadeId);
+        }
+
+        public Pet? BuscarPet(int petId, int? entidadeId)
+        {
+            return _repositorio.BuscarPet(petId, entidadeId);
         }
     }
 }

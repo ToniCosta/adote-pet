@@ -1,4 +1,6 @@
-﻿using Adotepet.Api.ViewModels;
+﻿using Adotepet.Api.Models;
+using Adotepet.Api.ViewModels;
+using Dapper;
 using MySql.Data.MySqlClient;
 
 namespace Adotepet.Api.Repositorios
@@ -30,6 +32,41 @@ namespace Adotepet.Api.Repositorios
                         new("@foto", foto)
                 }
             );
+        }
+
+        public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)
+        {
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+                " from pets p " +
+                " join racas_animais r on r.id = p.raca_id " +
+                " join tipos_animais t on t.id = p.tipo_animal_id " +
+                " where p.entidade_id = @entidade_id order by p.nome";
+            var parametros = new DynamicParameters();
+            parametros.Add("@entidade_id", entidadeId);
+            return Conn
+                .Query<Pet>(query, parametros)
+                .ToList();
+        }
+
+        public Pet? BuscarPet(int petId, int? entidadeId)
+        {
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+                " from pets p " +
+                " join racas_animais r on r.id = p.raca_id " +
+                " join tipos_animais t on t.id = p.tipo_animal_id " +
+                " where p.id = @petId ";
+            var parametros = new DynamicParameters();
+            parametros.Add("@petId", petId);
+            if (entidadeId.HasValue)
+            {
+                query += " and p.entidade_id = @entidadeId ";
+                parametros.Add("@entidadeId", entidadeId);
+            }
+            query += " order by p.nome";
+            
+            return Conn
+                .Query<Pet>(query, parametros)
+                .FirstOrDefault();
         }
     }
 }

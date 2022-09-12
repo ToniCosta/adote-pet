@@ -20,8 +20,8 @@
 
                 <v-tabs v-if="role == 'INSTITUICAO'">
                     <v-tab class="grey--text" to="/">Home</v-tab>
-                    <v-tab class="grey--text" to="/sobre">Perfil da instituição</v-tab>
-                    <v-tab class="grey--text" to="/ajuda">Pets cadastrados</v-tab>
+                    <v-tab class="grey--text" to="/perfil-entidade">Perfil da instituição</v-tab>
+                    <v-tab class="grey--text" to="/pets-instituicao">Pets cadastrados</v-tab>
                     <v-tab class="grey--text" to="/cadastro-pet">Cadastrar pet</v-tab>
                     <v-tabs-slider color="redAccent"></v-tabs-slider>
                 </v-tabs>
@@ -76,6 +76,7 @@ import DialogEntrar from './DialogEntrar.vue'
 import DialogCreateAccount from './DialogCreateAccount.vue';
 import { getUsuarioLogado, logOff } from '../services/accountService.js'
 export default {
+    name: 'MenuAppComponent',
     components: { 
         DialogEntrar,
         DialogCreateAccount

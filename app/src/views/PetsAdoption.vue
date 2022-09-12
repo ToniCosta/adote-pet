@@ -329,7 +329,7 @@
 
 <script>
 export default {
-	name: 'HomeView',
+	name: 'PetsAdoption',
 	components: {},
 	data: () => ({
 		isLoading: false,

@@ -132,6 +132,7 @@
 <script>
 import { criarContaTutor, criarContaRepresentante, registrarTokenUsuario } from '../services/accountService.js'
 export default {
+    name: 'DialogCreateAccount',
     props: {
         openDialogRegister: {
             type: Boolean,

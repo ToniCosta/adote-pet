@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using MySql.Data.MySqlClient;
 
 namespace Adotepet.Api.Controllers
@@ -6,6 +7,7 @@ namespace Adotepet.Api.Controllers
     public abstract class ControllerApi : ControllerBase
     {
         protected readonly MySqlConnection _connection;
+        protected static FileExtensionContentTypeProvider _mimeTypeProvider = new FileExtensionContentTypeProvider();
 
         public ControllerApi(MySqlConnection connection)
         {

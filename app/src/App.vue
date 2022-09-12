@@ -11,7 +11,7 @@
 import MenuApp from '@/components/MenuApp'
 
 export default {
-  name: 'App',
+  name: 'AppMain',
   components: {
     MenuApp
   },

@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container>
     <v-row class="text-center">
 		<v-col cols="5">
 			<h1 class="text-left display-3 font-weight-medium">Encontre um novo<br/>pet para você!</h1>

@@ -12,6 +12,7 @@ namespace Adotepet.Api.Controllers
     public class PetsController : ControllerApi
     {
         private readonly string _filePath;
+        
         public PetsController(MySqlConnection connection, IConfiguration config) : base(connection) 
         {
             _filePath = Path.Combine(config.GetValue<string>("FilesPath"));
@@ -24,6 +25,48 @@ namespace Adotepet.Api.Controllers
             return Executar(() => {
                 return new PetServico(new PetRepositorio(_connection)).CriarPet(model, _filePath, GetEntidadeId());
             });
+        }
+
+        [HttpGet]
+        [Route("pets-entidade")]
+        [Authorize(Roles = Usuario.TIPO_INSTITUICAO)]
+        public IActionResult ListarEntidade()
+        {
+            return Executar(() => {
+                return new PetServico(new PetRepositorio(_connection)).ListarPetsEntidade(GetEntidadeId());
+            });
+        }
+
+        [HttpGet]
+        [Route("buscar-pet-editar/{id}")]
+        [Authorize(Roles = Usuario.TIPO_INSTITUICAO)]
+        public IActionResult BuscarPetEditar([FromRoute] int id)
+        {
+            return Executar(() => {
+                return new PetServico(new PetRepositorio(_connection)).BuscarPet(id, GetEntidadeId());
+            });
+        }
+
+        [HttpGet]
+        [Route("foto")]
+        [AllowAnonymous]
+        public IActionResult Criar([FromQuery] string foto)
+        {
+            try
+            {
+                var path = Path.Combine(_filePath, foto);
+                if (!System.IO.File.Exists(path))
+                {
+                    return NotFound();
+                }
+                var bytes = System.IO.File.ReadAllBytes(path);
+                _mimeTypeProvider.TryGetContentType(foto, out var contentType);
+                return File(bytes, contentType ?? "application/octet-stream");
+            }
+            finally
+            {
+                _connection.Dispose();
+            }
         }
     }
 }
