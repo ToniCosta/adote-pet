@@ -14,6 +14,7 @@ A aplicação consiste em uma pesquisa por pets, cadastro de ONGS, formulário d
 
 - Node.js
 - MySQL
+- .NET Core
 
 ## Frontend
 
