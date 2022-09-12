@@ -1,5 +1,7 @@
 # Adote Pet
 
+https://adote.app
+
 # Sobre o projeto
 
 O site Adote Pet tem como proposta facilitar o processo de adoção de um pet, disponibilizando uma lista de pets cadastrados por ONGs/protetores de todo o brasil. Nós fazemos a ponte para que cães e gatos encontrem um novo lar todos os dias.
@@ -20,7 +22,21 @@ A aplicação consiste em uma pesquisa por pets, cadastro de ONGS, formulário d
 
 # Como executar o projeto
 
+## Clonar repositório
 
+git clone 
+
+## Entrar na pasta do projeto
+
+cd app
+
+## Instalar dependências
+
+npm install
+
+## Executar o projeto
+
+npm run serve
 
 # Autores
 
