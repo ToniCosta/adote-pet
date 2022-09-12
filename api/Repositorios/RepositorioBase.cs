@@ -12,7 +12,7 @@ namespace Adotepet.Api.Repositorios
             Conn = connection;
         }
 
-        protected MySqlTransaction Transaction => _transaction;
+        protected MySqlTransaction? Transaction => _transaction;
 
         protected void BeginTransaction()
         {

@@ -5,6 +5,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Dapper.DefaultTypeMap.MatchNamesWithUnderscores = true;
+
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(options =>
 {

@@ -25,7 +25,10 @@ namespace Adotepet.Api.Repositorios
             parametros.Add("@email", email?.ToUpper());
             parametros.Add("@senha", plainPassword);
             return
-                Conn.Query<Usuario>("select * from usuarios where upper(email) = @email and senha = MD5(@senha)",
+                Conn.Query<Usuario>("select u.*, t.id as tutor_id, e.id as entidade_id from usuarios u " +
+                " left join tutores t on t.usuario_id = u.id " +
+                " left join entidades e on e.usuario_id = u.id " +
+                " where upper(email) = @email and senha = MD5(@senha)",
                     parametros, transaction: Transaction)
                 .FirstOrDefault();
         }
@@ -49,7 +52,7 @@ namespace Adotepet.Api.Repositorios
                     }
                 );
 
-                query = $"insert into {(tipo == Usuario.TIPO_TUTOR ? "tutores" : "")} (usuario_id) values (@usuarioId)";
+                query = $"insert into {(tipo == Usuario.TIPO_TUTOR ? "tutores" : "entidades")} (usuario_id) values (@usuarioId)";
                 ExecuteInsert(query, new Tuple<string, object?>[] {
                         new("@usuarioId", id)
                     });

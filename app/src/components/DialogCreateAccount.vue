@@ -42,18 +42,19 @@
                                 ></v-text-field>
                             </v-col>
                             <v-col
-                                cols="6"
-                                sm="6"
-                                md="4"
+                                :cols="tipo == 'T' ? 6 : 12"
+                                :sm="tipo == 'T' ? 6 : 12"
+                                :md="tipo == 'T' ? 4 : 8"
                             >
                                 <v-text-field
                                 v-model="model.nome"
                                 :rules="[() => !!model.nome || 'Campo obrigatório']"
-                                label="Nome*"
+                                :label="tipo == 'T' ? 'Nome*' : 'Razão social*'"
                                 required
                                 ></v-text-field>
                             </v-col>
                             <v-col
+                                v-if="tipo == 'T'"
                                 cols="6"
                                 sm="6"
                                 md="4"

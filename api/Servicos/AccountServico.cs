@@ -27,6 +27,8 @@ namespace Adotepet.Api.Servicos
             List<Claim> claims = new()
             {
                 new Claim("Id", usuario.Id.ToString()),
+                new Claim("EntidadeId", usuario.EntidadeId?.ToString() ?? "0"),
+                new Claim("TutorId", usuario.TutorId?.ToString() ?? "0"),
                 new(ClaimTypes.Role, usuario.Tipo ?? "")
             };
 

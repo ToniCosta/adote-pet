@@ -10,14 +10,29 @@
             >          
             </v-col>
             <v-col cols="4">
-            <v-tabs>        
-                <v-tab class="grey--text" to="/">Home</v-tab>
-                <v-tab class="grey--text" to="/sobre">
-                Sobre nós
-                </v-tab>
-                <v-tab class="grey--text" to="/ajuda">Ajuda</v-tab>
-                <v-tabs-slider color="redAccent"></v-tabs-slider>
-            </v-tabs>
+
+                <v-tabs v-if="!isLogged">
+                    <v-tab class="grey--text" to="/">Home</v-tab>
+                    <v-tab class="grey--text" to="/sobre">Sobre nós</v-tab>
+                    <v-tab class="grey--text" to="/ajuda">Ajuda</v-tab>
+                    <v-tabs-slider color="redAccent"></v-tabs-slider>
+                </v-tabs>
+
+                <v-tabs v-if="role == 'INSTITUICAO'">
+                    <v-tab class="grey--text" to="/">Home</v-tab>
+                    <v-tab class="grey--text" to="/sobre">Perfil da instituição</v-tab>
+                    <v-tab class="grey--text" to="/ajuda">Pets cadastrados</v-tab>
+                    <v-tab class="grey--text" to="/cadastro-pet">Cadastrar pet</v-tab>
+                    <v-tabs-slider color="redAccent"></v-tabs-slider>
+                </v-tabs>
+
+                <v-tabs v-if="role == 'TUTOR'">
+                    <v-tab class="grey--text" to="/">Home</v-tab>
+                    <v-tab class="grey--text" to="/sobre">Meu perfil</v-tab>
+                    <v-tab class="grey--text" to="/ajuda">Meus pets</v-tab>
+                    <v-tabs-slider color="redAccent"></v-tabs-slider>
+                </v-tabs>
+
             </v-col>
             <v-col cols="2" class="d-inline-flex">
                 <v-btn
@@ -69,7 +84,8 @@ export default {
         openDialogRegister: false,
         openDialogLogIn: false,
         isLogged: false,
-        nome: ''
+        nome: '',
+        role: ''
     }),
     created() {
         var user = getUsuarioLogado();
@@ -86,11 +102,13 @@ export default {
         setUserLogged(data) {
             this.isLogged = true;
             this.nome = data.nome;
+            this.role = data.role;
         },
         sair() {
             logOff();
             this.isLogged = false;
             this.nome = '';
+            this.role = '';
             this.$toasted.success('Log out realizado com sucesso')
         }
     },

@@ -12,7 +12,7 @@ namespace Adotepet.Api.Controllers
             _connection = connection;
         }
 
-        protected IActionResult Executar<T, TOutput>(Func<T, TOutput> executeFunction, T input) 
+        protected IActionResult Executar<TOutput>(Func<TOutput> executeFunction) 
         {
             if (!ModelState.IsValid)
             {
@@ -20,7 +20,7 @@ namespace Adotepet.Api.Controllers
             }
             try
             {
-                var result = executeFunction(input);
+                var result = executeFunction();
                 return Ok(result);
             }
             catch (Exception e)
@@ -31,6 +31,11 @@ namespace Adotepet.Api.Controllers
             {
                 _connection.Dispose();
             }
+        }
+
+        protected int GetEntidadeId()
+        {
+            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "EntidadeId").Value ?? "0");
         }
     }
 }

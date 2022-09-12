@@ -11,11 +11,16 @@ const authHeader = () => {
   }
   
 
-const apiService = () => {
+const apiService = (isFormData = false) => {
+    let headers = {  }
+    if (isFormData) {
+      headers["Content-Type"] = "multipart/form-data"
+    }
     const http = axios.create({ 
-      baseURL: `${process.env.VUE_APP_APIURL}`
+      baseURL: `${process.env.VUE_APP_APIURL}`,
+      headers: headers
     });
-  
+
     http.interceptors.request.use((request) => {
       const header = authHeader();
       if (header.Authorization) {
@@ -44,4 +49,5 @@ const apiService = () => {
   };
   
   export const api = apiService();
+  export const apiFormData = apiService(true);
   

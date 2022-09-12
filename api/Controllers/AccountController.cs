@@ -3,6 +3,10 @@ using Adotepet.Api.Servicos;
 using Adotepet.Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Net;
+using System.Text;
 
 namespace Adotepet.Api.Controllers
 {
@@ -16,12 +20,11 @@ namespace Adotepet.Api.Controllers
         public IActionResult Login([FromBody] LoginViewModel model)
         {
             return Executar(
-                (m) => 
+                () => 
                 {
                     var servico = new AccountServico(new UsuariosRepositorio(_connection));
-                    return servico.FazerLoginGerarToken(m);
-                }, 
-                model
+                    return servico.FazerLoginGerarToken(model);
+                }
             );
         }
 
@@ -30,13 +33,12 @@ namespace Adotepet.Api.Controllers
         public IActionResult CriarContaTutor([FromBody] CriarContaViewModel model)
         {
             return Executar(
-                (m) =>
+                () =>
                 {
                     var servico = new AccountServico(new UsuariosRepositorio(_connection));
-                    servico.CriarUsuarioTutor(m);
-                    return true;
-                },
-                model
+                    servico.CriarUsuarioTutor(model);
+                    return servico.FazerLoginGerarToken(new LoginViewModel() { Email = model.Email, Senha = model.Senha });
+                }
             );
         }
 
@@ -45,13 +47,12 @@ namespace Adotepet.Api.Controllers
         public IActionResult CriarContaRepresentante([FromBody] CriarContaViewModel model)
         {
             return Executar(
-                (m) =>
+                () =>
                 {
                     var servico = new AccountServico(new UsuariosRepositorio(_connection));
-                    servico.CriarUsuarioRepresentante(m);
-                    return true;
-                },
-                model
+                    servico.CriarUsuarioRepresentante(model);
+                    return servico.FazerLoginGerarToken(new LoginViewModel() { Email = model.Email, Senha = model.Senha });
+                }
             );
         }
 
