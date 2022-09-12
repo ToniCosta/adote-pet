@@ -1,30 +1,30 @@
 # Adote Pet
 
-#Sobre o projeto
+# Sobre o projeto
 
 O site Adote Pet tem como proposta facilitar o processo de adoção de um pet, disponibilizando uma lista de pets cadastrados por ONGs/protetores de todo o brasil. Nós fazemos a ponte para que cães e gatos encontrem um novo lar todos os dias.
 
 A aplicação consiste em uma pesquisa por pets, cadastro de ONGS, formulário de soliticação de adoção e acompahamento do status do processo.
 
-#Tecnologias Utilizadas
+# Tecnologias Utilizadas
 
-##Backend
+## Backend
 
 - Node.js
 - MySQL
 
-##Frontend
+## Frontend
 
 - Vue.js
 - Vuetify
 
-#Como executar o projeto
+# Como executar o projeto
 
 
 
-#Autores
+# Autores
 
-##Grupo 01
+## Grupo 01
 
 - Antônio Simões da Costa Neto
 - Eduardo Ribeiro Azevedo
