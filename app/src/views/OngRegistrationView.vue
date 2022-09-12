@@ -9,19 +9,19 @@
 			<v-stepper :value="currentStep">
 				<v-stepper-header>
 					<v-stepper-step step="1">
-						Endereço
+						Dados básicos
 					</v-stepper-step>
 
 					<v-divider></v-divider>
 
 					<v-stepper-step step="2">
-						Documentação
+						Endereço						
 					</v-stepper-step>
 
 					<v-divider></v-divider>
 
 					<v-stepper-step step="3">
-						Dados básicos
+						Documentação
 					</v-stepper-step>
 				</v-stepper-header>
 				</v-stepper>
@@ -45,29 +45,17 @@
 								v-model="model.cnpj"
 								:rules="[() => !!model.cnpj || 'Campo obrigatório']"
 								label="CNPJ"
+								counter="14"
+								maxlength="14"
 								outlined
 								dense
 							></v-text-field>
 						</v-col>
-
 						<v-col
 							cols="12"
 							sm="6"
 						>
-							<v-text-field
-								v-model="model.razaoSocial"
-								:rules="[() => !!model.razaoSocial || 'Campo obrigatório']"
-								label="Razão Social"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col
-							cols="12"
-							sm="6"
-						>
+							
 							<v-text-field
 								v-model="model.nomeDiretor"
 								:rules="[() => !!model.nomeDiretor || 'Campo obrigatório']"
@@ -76,7 +64,8 @@
 								dense
 							></v-text-field>
 						</v-col>
-
+					</v-row>
+					<v-row>
 						<v-col
 							cols="12"
 							sm="6"
@@ -85,39 +74,12 @@
 								v-model="model.cpfDiretor"
 								:rules="[() => !!model.cpfDiretor || 'Campo obrigatório']"
 								label="CPF Diretor/Conselheiro"
+								counter="11"
+								maxlength="11"
 								outlined
 								dense
 							></v-text-field>
 						</v-col>
-					</v-row>
-					<v-row>
-						<v-col
-							cols="12"
-							sm="6"
-						>
-							<v-text-field
-								v-model="model.email"
-								:rules="[() => !!model.email || 'Campo obrigatório']"
-								label="Email"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-
-						<v-col
-							cols="12"
-							sm="6"
-						>
-							<v-text-field
-								v-model="model.senha"
-								:rules="[() => !!model.senha || 'Campo obrigatório']"
-								label="Senha de acesso"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-					</v-row>
-					<v-row>
 						<v-col 
 							cols="12"
 							sm="6">
@@ -127,10 +89,14 @@
 								prepend-icon="mdi-camera"
 								label="Logomarca (Arquivo PNG ou JPEG)"
 								:multiple="false"
-								v-model="file"
+								v-model="model.file"
+								:rules="[() => !!model.file || 'Campo obrigatório']"
 								
 							></v-file-input>
 						</v-col>
+					</v-row>
+					<v-row>
+						
 					</v-row>
 					
 				</div>
@@ -197,13 +163,14 @@
 							cols="12"
 							sm="4"
 						>
-							<v-text-field
-								v-model="model.estado"
-								:rules="[() => !!model.estado || 'Campo obrigatório']"
-								label="Estado"
+							<v-combobox
+								v-model="model.uf"
+								label="Estado*"
+								:items="estados"
 								outlined
+								:return-object="false"
 								dense
-							></v-text-field>
+							></v-combobox>
 						</v-col>
 						<v-col
 							cols="12"
@@ -213,6 +180,8 @@
 								v-model="model.cep"
 								:rules="[() => !!model.cep || 'Campo obrigatório']"
 								label="CEP"
+								counter="8"
+								maxlength="8"
 								outlined
 								dense
 							></v-text-field>
@@ -226,40 +195,32 @@
 							cols="12"
 							sm="6"
 						>
-							<v-text-field
-								v-model="model.cartaoCNPJ"
+							<v-file-input
+								accept="image/png, image/jpeg, image/bmp"
+								placeholder="Cartão de CNPJ"
 								:rules="[() => !!model.cartaoCNPJ || 'Campo obrigatório']"
+								prepend-icon="mdi-camera"
 								label="Cartão de CNPJ"
-								outlined
-								dense
-							></v-text-field>
+								:multiple="false"
+								v-model="model.cartaoCNPJ"
+								
+							></v-file-input>							
 						</v-col>
 
 						<v-col
 							cols="12"
 							sm="6"
 						>
-							<v-text-field
-								v-model="model.documento1"
-								:rules="[() => !!model.documento1 || 'Campo obrigatório']"
-								label="Documento 1"
-								outlined
-								dense
-							></v-text-field>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col
-							cols="12"
-							sm="6"
-						>
-							<v-text-field
-								v-model="model.documento2"
-								:rules="[() => !!model.documento2 || 'Campo obrigatório']"
-								label="Documento 2"
-								outlined
-								dense
-							></v-text-field>
+							<v-file-input
+								accept="image/png, image/jpeg, image/bmp"
+								placeholder="Documento do Diretor (RG/CNH)"
+								:rules="[() => !!model.documentoDiretor || 'Campo obrigatório']"
+								prepend-icon="mdi-camera"
+								label="Documento do Diretor (RG/CNH)"
+								:multiple="false"
+								v-model="model.documentoDiretor"
+								
+							></v-file-input>
 						</v-col>
 					</v-row>
 				</div>
@@ -273,6 +234,16 @@
 						LIMPAR
 					</v-btn>
 					<v-spacer></v-spacer>
+					<v-btn
+						:disabled="this.currentStep === 1"
+						:loading="isLoading"
+						class="white--text"
+						color="grey"
+						depressed
+						@click="this.currentStep -=  1"
+					>
+						VOLTAR
+					</v-btn>
 					<v-btn
 						:disabled="!isValid"
 						:loading="isLoading"
@@ -291,7 +262,7 @@
 </template>
 
 <script>
-
+import { estadosOptions } from '../services/listasService.js'
 export default {
 	name: 'OngRegistration',
 	components: {
@@ -310,15 +281,15 @@ export default {
 			numero: null,
 			bairro: null,
 			cidade: null,
-			estado: null,
+			uf: null,
 			cep: null,
 			cartaoCNPJ: null,
-			documento1: null,
-			documento2: null
+			documentoDiretor: null
 		},
 		isValid: false,
 		isLoading: false,
-		currentStep: 1
+		currentStep: 1,
+		estados: estadosOptions
 	}),
 	created() {
 		
@@ -329,8 +300,7 @@ export default {
 				return
 			}
 			this.currentStep +=  1
-		}
-		
+		}		
 	},
 	watch: {
 		
