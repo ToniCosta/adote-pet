@@ -1,6 +1,6 @@
 # Adote Pet
 
-https://adote.app
+https://adotepet.app
 
 # Sobre o projeto
 
@@ -24,7 +24,7 @@ A aplicação consiste em uma pesquisa por pets, cadastro de ONGS, formulário d
 
 ## Clonar repositório
 
-git clone 
+git clone https://github.com/ToniCosta/adote-pet.git
 
 ## Entrar na pasta do projeto
 
