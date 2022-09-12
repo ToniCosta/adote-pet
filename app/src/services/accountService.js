@@ -20,6 +20,7 @@ export const fazerLogin = (email, senha) => {
     return api.post('api/account/login', { email, senha })
 }
 
+
 export const criarContaTutor = (model) =>  {
     return api.post('api/account/criar-conta-tutor', model)
 }
