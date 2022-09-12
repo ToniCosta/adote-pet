@@ -54,10 +54,14 @@
                         <v-row>
                             <v-col cols="6">
                                 <div style="height:321px; width: 274px;">
-                                    <img :src="getFotoUrl(itensDetails.foto)" style="width: 100%;" />
+                                    <img :src="getFotoUrl(itensDetails.foto)" style="width: auto;height: 100%;" />
                                 </div>
                             </v-col>
                             <v-col cols="6">
+                                <div>
+                                    ONG/Entidade acolhedora
+                                    <p>{{itensDetails.entidade}}</p>
+                                </div>
                                 <div>
                                     Nome
                                     <p>{{itensDetails.nome}}</p>

@@ -35,6 +35,11 @@ namespace Adotepet.Api.Servicos
             return _repositorio.ListarPetsEntidade(entidadeId);
         }
 
+        public IEnumerable<Pet> ListarPetsTutor(int tutorId)
+        {
+            return _repositorio.ListarPetsTutor(tutorId);
+        }
+
         public Pet? BuscarPet(int petId, int? entidadeId)
         {
             return _repositorio.BuscarPet(petId, entidadeId);

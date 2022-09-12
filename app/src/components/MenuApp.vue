@@ -19,7 +19,6 @@
                 </v-tabs>
 
                 <v-tabs v-if="role == 'INSTITUICAO'">
-                    <v-tab class="grey--text" to="/">Home</v-tab>
                     <v-tab class="grey--text" to="/cadastro-ong">
                         <v-icon
                             v-if="!isPerfilPreenchido"
@@ -31,6 +30,8 @@
                     </v-tab>
                     <v-tab class="grey--text" to="/pets-instituicao">Pets cadastrados</v-tab>
                     <v-tab class="grey--text" to="/cadastro-pet">Cadastrar pet</v-tab>
+                    <v-tab class="grey--text" to="/sobre">Sobre nós</v-tab>
+                    <v-tab class="grey--text" to="/ajuda">Ajuda</v-tab>
                     <v-tabs-slider color="redAccent"></v-tabs-slider>
                 </v-tabs>
 
@@ -45,7 +46,9 @@
                         </v-icon>
                         Meu perfil
                     </v-tab>
-                    <v-tab class="grey--text" to="/ajuda">Meus pets</v-tab>
+                    <v-tab class="grey--text" to="/meus-pets">Meus pets</v-tab>
+                    <v-tab class="grey--text" to="/sobre">Sobre nós</v-tab>
+                    <v-tab class="grey--text" to="/ajuda">Ajuda</v-tab>
                     <v-tabs-slider color="redAccent"></v-tabs-slider>
                 </v-tabs>
 

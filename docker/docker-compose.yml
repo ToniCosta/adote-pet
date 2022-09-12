@@ -1,0 +1,41 @@
+version: "3.5"
+services:
+    netcore-senacpi-api:
+        container_name: "senacpi-api"
+        build:
+            dockerfile: ./docker-conf/api.dockerfile
+            context: /var/docker-data/configs/senacpi
+        networks:
+            - clarify-network
+        volumes:
+            - /var/docker-data/configs/senacpi/docker-conf/api/vhost.d:/etc/nginx/vhost.d:ro
+            - /var/docker-data/configs/senacpi/docker-conf/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
+            - /var/docker-data/configs/senacpi/builds/api:/app
+            - /var/docker-data/configs/senacpi/arquivos:/var/uploads
+        restart: always
+        environment:
+            HTTP_PORT: 80
+            VIRTUAL_HOST: api.adotepet.app
+            LETSENCRYPT_HOST: api.adotepet.app
+            LETSENCRYPT_EMAIL: "elton.souza@outlook.com"
+            TZ: America/Sao_Paulo
+    nginx-senacpi-app:
+        container_name: "senacpi-app"
+        image: "nginx:latest"
+        networks:
+            - clarify-network
+        restart: always
+        volumes:
+            - /var/docker-data/configs/senacpi/docker-conf/vhost.d:/etc/nginx/vhost.d:ro
+            - /var/docker-data/configs/senacpi/docker-conf/default.conf:/etc/nginx/conf.d/default.conf:ro
+            - /var/docker-data/configs/senacpi/docker-conf/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf:ro
+            - /var/docker-data/configs/senacpi/builds/app:/usr/share/nginx/html
+        environment:
+            HTTP_PORT: 80
+            VIRTUAL_HOST: adotepet.app
+            LETSENCRYPT_HOST: adotepet.app
+            LETSENCRYPT_EMAIL: "elton.souza@outlook.com"
+            TZ: America/Sao_Paulo
+networks:
+    clarify-network:
+        external: true

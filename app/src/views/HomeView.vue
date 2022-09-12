@@ -99,13 +99,19 @@
 </template>
 
 <script>
-
+import { getUsuarioLogado } from '../services/accountService.js'
 export default {
 	name: 'HomeView',
 	components: {},
 	data: () => ({
 		termo: ''
 	}),
+	created() {
+		var user = getUsuarioLogado();
+		if (user != null && user.role == 'INSTITUICAO') {
+			this.$router.push({path: '/pets-instituicao'})
+		}
+	},
 	methods: {
 		pesquisar() {
 			this.$router.push({name: 'petsAdoption', params: { filtro: this.termo }})

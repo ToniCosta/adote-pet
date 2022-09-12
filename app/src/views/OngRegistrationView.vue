@@ -47,6 +47,7 @@
 								label="CNPJ"
 								counter="14"
 								maxlength="14"
+								number
 								outlined
 								dense
 							></v-text-field>
@@ -76,6 +77,7 @@
 								label="CPF Diretor/Conselheiro"
 								counter="11"
 								maxlength="11"
+								number
 								outlined
 								dense
 							></v-text-field>
@@ -89,8 +91,8 @@
 								prepend-icon="mdi-camera"
 								label="Logomarca (Arquivo PNG ou JPEG)"
 								:multiple="false"
-								v-model="model.file"
-								:rules="[() => !!model.file || 'Campo obrigatório']"
+								v-model="logo"
+								:rules="[() => !!logo || 'Campo obrigatório']"
 								
 							></v-file-input>
 						</v-col>
@@ -182,6 +184,7 @@
 								label="CEP"
 								counter="8"
 								maxlength="8"
+								number
 								outlined
 								dense
 							></v-text-field>
@@ -198,11 +201,11 @@
 							<v-file-input
 								accept="image/png, image/jpeg, image/bmp"
 								placeholder="Cartão de CNPJ"
-								:rules="[() => !!model.cartaoCNPJ || 'Campo obrigatório']"
+								:rules="[() => !!cartaoCNPJ || 'Campo obrigatório']"
 								prepend-icon="mdi-camera"
 								label="Cartão de CNPJ"
 								:multiple="false"
-								v-model="model.cartaoCNPJ"
+								v-model="cartaoCNPJ"
 								
 							></v-file-input>							
 						</v-col>
@@ -214,11 +217,11 @@
 							<v-file-input
 								accept="image/png, image/jpeg, image/bmp"
 								placeholder="Documento do Diretor (RG/CNH)"
-								:rules="[() => !!model.documentoDiretor || 'Campo obrigatório']"
+								:rules="[() => !!documentoDiretor || 'Campo obrigatório']"
 								prepend-icon="mdi-camera"
 								label="Documento do Diretor (RG/CNH)"
 								:multiple="false"
-								v-model="model.documentoDiretor"
+								v-model="documentoDiretor"
 								
 							></v-file-input>
 						</v-col>
@@ -269,6 +272,9 @@ export default {
 
 	},
 	data: () => ({
+		logo: null,
+		cartaoCNPJ: null,
+		documentoDiretor: null,
 		model: {
 			cnpj: null,
 			razaoSocial: null,
@@ -276,15 +282,12 @@ export default {
 			cpfDiretor: null,
 			email: null,
 			senha: null,
-			file: null,
 			logradouro: null,
 			numero: null,
 			bairro: null,
 			cidade: null,
 			uf: null,
 			cep: null,
-			cartaoCNPJ: null,
-			documentoDiretor: null
 		},
 		isValid: false,
 		isLoading: false,
@@ -297,6 +300,7 @@ export default {
 	methods: {
 		nextStep () {
 			if (this.currentStep === 3) {
+				this.$toasted.info('Funcionalidade não implementada')
 				return
 			}
 			this.currentStep +=  1

@@ -8,6 +8,10 @@ export const listarPetsEntidade = () => {
     return api.get(`api/pets/pets-entidade`)
 }
 
+export const listarPetsTutor = () => {
+    return api.get(`api/pets/pets-tutor`)
+}
+
 export const buscarPetEditar = (id) => {
     return api.get(`api/pets/buscar-pet-editar/${id}`)
 }

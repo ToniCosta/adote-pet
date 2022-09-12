@@ -67,6 +67,14 @@ const routes = [
 		component: () => import(/* webpackChunkName: "tutorRegistration" */ '../views/TutorRegistrationView.vue')
 	},
 	{
+		path: '/meus-pets',
+		name: 'petsTutor',
+		// route level code-splitting
+		// this generates a separate chunk (petsTutor.[hash].js) for this route
+		// which is lazy-loaded when the route is visited.
+		component: () => import(/* webpackChunkName: "petsTutor" */ '../views/PetsTutor.vue')
+	},
+	{
 		path: '/cadastro-ong',
 		name: 'ongRegistration',
 		// route level code-splitting

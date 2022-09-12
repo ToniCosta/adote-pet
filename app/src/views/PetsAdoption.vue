@@ -50,7 +50,11 @@ export default {
 
 	methods: {
 		pesquisar() {
+			if (this.isLoading) {
+				return
+			}
 			this.isLoading = true;
+			this.items = [];
 			buscarPets(this.termo)
 				.then(({ data }) => {
 					this.items = data

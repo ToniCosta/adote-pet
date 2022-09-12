@@ -276,7 +276,6 @@ export default {
 	methods: {
 		changeTipoAnimal() {
 			this.racasOptions = []
-			this.model
 		},
 		enviar()  {
 			if (this.isLoading) {

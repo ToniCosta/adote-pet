@@ -216,7 +216,9 @@
 								v-model="model.cep"
 								:rules="[() => !!model.cep || 'Campo obrigatório']"
 								label="CEP*"
-								type="number"
+								number
+								counter="8"
+								maxlength="8"
 								outlined
 								dense
 							></v-text-field>
@@ -433,6 +435,9 @@ export default {
 
 	},
 	methods: {
+		changeTipoAnimal() {
+			this.racasOptions = []
+		},
 		nextStep () {
 			if (this.currentStep === 3) {
 				atualizarPerfilTutor(this.model).then(() => {

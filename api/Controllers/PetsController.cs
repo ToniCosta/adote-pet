@@ -38,6 +38,16 @@ namespace Adotepet.Api.Controllers
         }
 
         [HttpGet]
+        [Route("pets-tutor")]
+        [Authorize(Roles = Usuario.TIPO_TUTOR)]
+        public IActionResult ListarTutor()
+        {
+            return Executar(() => {
+                return new PetServico(new PetRepositorio(_connection)).ListarPetsTutor(GetTutorId());
+            });
+        }
+
+        [HttpGet]
         [Route("buscar-pet-editar/{id}")]
         [Authorize(Roles = Usuario.TIPO_INSTITUICAO)]
         public IActionResult BuscarPetEditar([FromRoute] int id)

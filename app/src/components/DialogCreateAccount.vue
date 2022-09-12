@@ -183,7 +183,14 @@ export default {
                     registrarTokenUsuario(data)
                     this.$toasted.success('Usuário criado com sucesso')
                     this.$root.$emit('loggedOn', data);
-                    this.$emit('close')
+                    this.$emit('close');
+                    this.model.email = '';
+                    this.model.nome = '';
+                    this.model.sobrenome = '';
+                    this.model.celular = '';
+                    this.model.senha = '';
+                    this.model.confirmarSenha = '';
+                    this.tipo == ''
                 }).catch(error => {
                     trataErro(this, error)
                 })

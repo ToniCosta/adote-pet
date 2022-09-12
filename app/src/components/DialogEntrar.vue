@@ -86,6 +86,13 @@ export default {
                 this.$toasted.success('Login realizado com sucesso')
                 this.$root.$emit('loggedOn', data);
                 this.$emit('close')
+                this.login.email = ''
+                this.login.senha = ''
+
+                if (this.$route.name == 'home' && data.role == 'INSTITUICAO') {
+                    this.$router.push({path: '/pets-instituicao'})
+                }
+
             }).catch(error => {
                 trataErro(this, error)
             })

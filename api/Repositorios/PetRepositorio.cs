@@ -42,10 +42,12 @@ namespace Adotepet.Api.Repositorios
         public IEnumerable<Pet> BuscarPets(string filtro, decimal? lat, decimal? lng)
         {
             var parametros = new DynamicParameters();
-            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal, u.nome as entidade " +
                 " from pets p " +
                 " join racas_animais r on r.id = p.raca_id " +
                 " join tipos_animais t on t.id = p.tipo_animal_id " +
+                " join entidades e on e.id = p.entidade_id " +
+                " join usuarios u on u.id = e.usuario_id " + 
                 " where p.status_pet = @statusAdocao and " +
                 " (upper(p.localizacao) like @filtro or upper(r.descricao) like @filtro or upper(t.descricao) like @filtro or (p.nome) like @filtro) ";
             parametros.Add("@filtro", $"%{filtro?.ToUpper()}%");
@@ -64,26 +66,40 @@ namespace Adotepet.Api.Repositorios
                 .ToList();
         }
 
-        public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)
+        private IEnumerable<Pet> ListarPetsEntidadeOuTutor(string tipo, int id)
         {
-            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal, u.nome as entidade " +
                 " from pets p " +
                 " join racas_animais r on r.id = p.raca_id " +
                 " join tipos_animais t on t.id = p.tipo_animal_id " +
-                " where p.entidade_id = @entidade_id order by p.nome";
+                " join entidades e on e.id = p.entidade_id " +
+                " join usuarios u on u.id = e.usuario_id " +
+                $" where p.{tipo} = @id order by p.nome";
             var parametros = new DynamicParameters();
-            parametros.Add("@entidade_id", entidadeId);
+            parametros.Add("@id", id);
             return Conn
                 .Query<Pet>(query, parametros)
                 .ToList();
         }
 
+        public IEnumerable<Pet> ListarPetsTutor(int tutorId) 
+        {
+            return ListarPetsEntidadeOuTutor("tutor_id", tutorId);
+        }
+
+        public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)
+        {
+            return ListarPetsEntidadeOuTutor("entidade_id", entidadeId);
+        }
+
         public Pet? BuscarPet(int petId, int? entidadeId)
         {
-            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal, u.nome as entidade " +
                 " from pets p " +
                 " join racas_animais r on r.id = p.raca_id " +
                 " join tipos_animais t on t.id = p.tipo_animal_id " +
+                " join entidades e on e.id = p.entidade_id " +
+                " join usuarios u on u.id = e.usuario_id " +
                 " where p.id = @petId ";
             var parametros = new DynamicParameters();
             parametros.Add("@petId", petId);

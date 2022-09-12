@@ -7,6 +7,7 @@
 		public const string STATUS_ADOTADO = "Adotado";
 
 		public int Id { get; set; }
+		public string? Entidade { get; set; }
 		public string? Nome { get; set; }
 		public string? Cor { get; set; }
 		public string? TamanhoPelo { get; set; }

@@ -131,7 +131,7 @@ create table if not exists pets (
 	latitude       numeric(14, 12) null,
 	longitude      numeric(14, 12) null,
 	
-	status_pet     varchar(20) null not null,
+	status_pet     varchar(50) null not null,
 	tutor_id       int null,
 
 	primary key pk_pets (id),
