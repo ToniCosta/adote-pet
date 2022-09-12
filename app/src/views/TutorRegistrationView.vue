@@ -380,7 +380,7 @@
 <script>
 
 export default {
-	name: 'PetsRegistration',
+	name: 'TutorRegistration',
 	components: {
 
 	},
