@@ -5,11 +5,11 @@
     > 
         <v-row>
             <v-col 
-                lg="6"
+                lg="2"
                 xs="1"
             >          
             </v-col>
-            <v-col cols="4">
+            <v-col cols="8">
 
                 <v-tabs v-if="!isLogged">
                     <v-tab class="grey--text" to="/">Home</v-tab>
@@ -20,7 +20,15 @@
 
                 <v-tabs v-if="role == 'INSTITUICAO'">
                     <v-tab class="grey--text" to="/">Home</v-tab>
-                    <v-tab class="grey--text" to="/perfil-entidade">Perfil da instituição</v-tab>
+                    <v-tab class="grey--text" to="/perfil-entidade">
+                        <v-icon
+                            v-if="!isPerfilPreenchido"
+                            class="mr-2"
+                            dense color="orange darken-2" title="Preencha seu perfil">
+                            mdi-alert
+                        </v-icon>
+                        Perfil da instituição
+                    </v-tab>
                     <v-tab class="grey--text" to="/pets-instituicao">Pets cadastrados</v-tab>
                     <v-tab class="grey--text" to="/cadastro-pet">Cadastrar pet</v-tab>
                     <v-tabs-slider color="redAccent"></v-tabs-slider>
@@ -28,7 +36,15 @@
 
                 <v-tabs v-if="role == 'TUTOR'">
                     <v-tab class="grey--text" to="/">Home</v-tab>
-                    <v-tab class="grey--text" to="/sobre">Meu perfil</v-tab>
+                    <v-tab class="grey--text" to="/sobre">
+                        <v-icon
+                            v-if="!isPerfilPreenchido"
+                            class="mr-2"
+                            dense color="orange darken-2" title="Preencha seu perfil">
+                            mdi-alert
+                        </v-icon>
+                        Meu perfil
+                    </v-tab>
                     <v-tab class="grey--text" to="/ajuda">Meus pets</v-tab>
                     <v-tabs-slider color="redAccent"></v-tabs-slider>
                 </v-tabs>
@@ -85,6 +101,7 @@ export default {
         openDialogRegister: false,
         openDialogLogIn: false,
         isLogged: false,
+        isPerfilPreenchido: true,
         nome: '',
         role: ''
     }),
@@ -98,23 +115,32 @@ export default {
         this.$root.$on('loggedOn', (user) => {
             this.setUserLogged(user)
         })
+        this.$root.$on('perfilCompleto', () => {
+            this.isPerfilPreenchido = true;
+        })
     },
     methods: {
         setUserLogged(data) {
             this.isLogged = true;
             this.nome = data.nome;
             this.role = data.role;
+            this.isPerfilPreenchido = data.cadastroCompleto;
         },
         sair() {
             logOff();
             this.isLogged = false;
             this.nome = '';
             this.role = '';
-            this.$toasted.success('Log out realizado com sucesso')
+            this.isPerfilPreenchido = true;
+            if (this.$route.name != 'home') {
+                this.$router.push({name: 'home'})
+            }
+            this.$toasted.success('Log out realizado com sucesso');
         }
     },
     destroyed() {
         this.$root.$off('loggedOn');
+        this.$root.$off('perfilCompleto');
     } 
 }
 </script>

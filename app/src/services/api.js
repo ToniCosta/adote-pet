@@ -39,7 +39,7 @@ const apiService = (isFormData = false) => {
         //demais erros continuam funcionando o codigo
         if (err_response.response.status == 0) {
           localStorage.removeItem("user");
-          window.location.href = '/login'
+          window.location.href = '/'
         } 
         return Promise.reject(err_response);
       }

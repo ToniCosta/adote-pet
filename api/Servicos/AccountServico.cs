@@ -51,7 +51,8 @@ namespace Adotepet.Api.Servicos
             {
                 Token = tokenHandler.WriteToken(token),
                 Nome = usuario.Nome,
-                Role = usuario.Tipo
+                Role = usuario.Tipo,
+                CadastroCompleto = usuario.CadastroPreenchido
             };
         }
 

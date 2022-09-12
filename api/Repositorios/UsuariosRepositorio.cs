@@ -38,7 +38,7 @@ namespace Adotepet.Api.Repositorios
             try
             {
                 BeginTransaction();
-                var query = "insert into usuarios(nome, sobrenome, telefone, email, senha, tipo) values (@nome, @sobrenome, @telefone, @email, MD5(@senha), @tipo)";
+                var query = "insert into usuarios(nome, sobrenome, telefone, email, senha, tipo, cadastro_preenchido) values (@nome, @sobrenome, @telefone, @email, MD5(@senha), @tipo, false)";
 
                 var id = ExecuteInsert(
                     query,

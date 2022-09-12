@@ -321,7 +321,7 @@ export default {
 			})
 		},
 		pesquisarCidade(val) {
-			if (this.isLoadingCidades || !!val)
+			if (this.isLoadingCidades || val == null || val == '')
 			{
 				return;
 			} 

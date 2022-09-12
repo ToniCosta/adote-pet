@@ -1,4 +1,5 @@
 /*
+    drop table pets;
     drop table racas_animais;
     drop table tipos_animais;
     drop table tutores;
@@ -14,6 +15,8 @@ create table if not exists usuarios (
 	email     varchar(255) not null,
 	senha     varchar(255) not null,
 	tipo      varchar(20) not null,
+
+	cadastro_preenchido bool not null,
 
 	primary key pk_usuarios (id),
 	CHECK (tipo in ('ADMIN', 'TUTOR', 'INSTITUICAO'))
@@ -53,10 +56,13 @@ create table if not exists tutores (
 	bairro              varchar(255) null,
 	cidade              varchar(255) null,
 	uf                  varchar(2) null,
-	cep              varchar(15) null,
+	cep                 varchar(15) null,
 	possui_area_lazer   varchar(500) null,
 	veterinario_proximo varchar(500) null,
 	tipo_residencia     varchar(25) null,
+
+	latitude            numeric(14, 12) null,
+	longitude           numeric(14, 12) null,
 
 
 	primary key pk_tutores (id),
@@ -114,9 +120,18 @@ create table if not exists pets (
 	localizacao    varchar(255) null,
 	descricao      text null,
 	foto           varchar(255) null,
+
+	latitude       numeric(14, 12) null,
+	longitude      numeric(14, 12) null,
+	
+	status_pet     varchar(20) null not null,
+	tutor_id       int null,
+
 	primary key pk_pets (id),
 	foreign key fk_pets_entidade (entidade_id) references entidades (id),
 	foreign key fk_pets_tipo (tipo_animal_id) references tipos_animais (id),
-	foreign key fk_pets_raca (raca_id) references racas_animais (id)
+	foreign key fk_pets_raca (raca_id) references racas_animais (id),
+	foreign key fk_pets_tutor (tutor_id) references tutores (id),
+	CHECK (status_pet in ('Para adoção', 'Em processo de adoção', 'Adotado'))
 );
 
