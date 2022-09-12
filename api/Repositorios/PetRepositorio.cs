@@ -39,6 +39,31 @@ namespace Adotepet.Api.Repositorios
             );
         }
 
+        public IEnumerable<Pet> BuscarPets(string filtro, decimal? lat, decimal? lng)
+        {
+            var parametros = new DynamicParameters();
+            var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +
+                " from pets p " +
+                " join racas_animais r on r.id = p.raca_id " +
+                " join tipos_animais t on t.id = p.tipo_animal_id " +
+                " where p.status_pet = @statusAdocao and " +
+                " (upper(p.localizacao) like @filtro or upper(r.descricao) like @filtro or upper(t.descricao) like @filtro or (p.nome) like @filtro) ";
+            parametros.Add("@filtro", $"%{filtro?.ToUpper()}%");
+            parametros.Add("@statusAdocao", Pet.STATUS_PARA_ADOCAO);
+
+            var orderBy = " order by p.nome ";
+            if (lat.HasValue && lng.HasValue) 
+            {
+                orderBy = " order by ST_Distance_Sphere(point(@lat, @lng), point(p.latitude, p.longitude)) asc ";
+                parametros.Add("@lat", lat);
+                parametros.Add("@lng", lng);
+            }
+
+            return Conn
+                .Query<Pet>(query + orderBy, parametros)
+                .ToList();
+        }
+
         public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)
         {
             var query = "select p.*, r.descricao as raca, t.descricao as tipo_animal " +

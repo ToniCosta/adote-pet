@@ -20,7 +20,7 @@
 
                 <v-tabs v-if="role == 'INSTITUICAO'">
                     <v-tab class="grey--text" to="/">Home</v-tab>
-                    <v-tab class="grey--text" to="/perfil-entidade">
+                    <v-tab class="grey--text" to="/cadastro-ong">
                         <v-icon
                             v-if="!isPerfilPreenchido"
                             class="mr-2"

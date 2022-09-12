@@ -6,8 +6,10 @@
 			<h2 class="text-left headline mt-8 mb-12">Adotar ficou mais fácil e rápido.</h2>
 			<v-text-field
 				filled
-				label="Pesquisar"
+				label="Digite a cidade ou a raça do pet e pressione enter"
 				prepend-inner-icon="mdi-magnify"
+				v-model="termo"
+				@keyup.enter="pesquisar"
 			></v-text-field>
 		</v-col>
 		<v-col cols="1"></v-col>
@@ -40,6 +42,7 @@
 				<v-btn
 					color="red lighten-2"
 					text
+					@click="() => { $router.push({name: 'petsAdoption'})}"
 				>
 					ACESSAR
 				</v-btn>
@@ -66,14 +69,6 @@
 					<v-list-item-subtitle>A ONG/protetor parceiro irá fazer a análise do cadastro e perfil do adotante vs pet escolhido. Preenchendo os requisitos, você recebe a aprovação na hora (quando a entrevista é realizada na loja pelo voluntário da ONG/protetor)</v-list-item-subtitle>
 				</v-list-item-content>            
 			</v-list-item>
-			<v-card-actions>
-				<v-btn
-					color="red lighten-2"
-					text
-				>
-					ACESSAR
-				</v-btn>
-			</v-card-actions>
 			</v-card>
 		</v-col>
 		<v-col cols="4">
@@ -97,14 +92,6 @@
 						<v-list-item-subtitle>Caso seja aprovado na hora pelo voluntário da ONG/protetor, você já pode levar seu pet para casa! Se enviou o formulário online, espere o contato e a aprovação. Com tudo certo, você busca seu pet em uma loja Petz no dia combinado com a ONG/protetor.</v-list-item-subtitle>
 					</v-list-item-content>            
 				</v-list-item>
-				<v-card-actions>
-					<v-btn
-						color="red lighten-2"
-						text
-					>
-						ACESSAR
-					</v-btn>
-				</v-card-actions>
 			</v-card>
 		</v-col>
     </v-row>
@@ -117,7 +104,12 @@ export default {
 	name: 'HomeView',
 	components: {},
 	data: () => ({
-
-	})
+		termo: ''
+	}),
+	methods: {
+		pesquisar() {
+			this.$router.push({name: 'petsAdoption', params: { filtro: this.termo }})
+		}
+	}
 }
 </script>

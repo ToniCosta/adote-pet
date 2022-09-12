@@ -11,3 +11,7 @@ export const listarPetsEntidade = () => {
 export const buscarPetEditar = (id) => {
     return api.get(`api/pets/buscar-pet-editar/${id}`)
 }
+
+export const buscarPets = (filtro) => {
+    return api.get(`api/pets/buscar-pets?filtro=${filtro}`)
+}

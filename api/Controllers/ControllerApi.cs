@@ -37,17 +37,17 @@ namespace Adotepet.Api.Controllers
 
         protected int GetEntidadeId()
         {
-            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "EntidadeId").Value ?? "0");
+            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "EntidadeId")?.Value ?? "0");
         }
 
         protected int GetTutorId()
         {
-            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "TutorId").Value ?? "0");
+            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "TutorId")?.Value ?? "0");
         }
 
         protected int GetUsuarioId()
         {
-            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "Id").Value ?? "0");
+            return Convert.ToInt32(User.Claims.FirstOrDefault(m => m.Type == "Id")?.Value ?? "0");
         }
     }
 }

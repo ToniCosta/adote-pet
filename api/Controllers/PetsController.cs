@@ -68,5 +68,21 @@ namespace Adotepet.Api.Controllers
                 _connection.Dispose();
             }
         }
+
+        [HttpGet]
+        [Route("buscar-pets")]
+        public IActionResult BuscarPets([FromQuery] string filtro)
+        {
+            return Executar(() => {
+                decimal? lat = null, lng = null;
+                if (GetTutorId() > 0)
+                {
+                    var tutor = new AccountServico(new UsuariosRepositorio(_connection)).BuscarDadosTutor(GetTutorId());
+                    lat = tutor?.Latitude;
+                    lng = tutor?.Longitude;
+                }
+                return new PetServico(new PetRepositorio(_connection)).BuscarPets(filtro, lat, lng);
+            });
+        }
     }
 }

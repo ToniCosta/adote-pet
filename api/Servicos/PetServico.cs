@@ -39,5 +39,10 @@ namespace Adotepet.Api.Servicos
         {
             return _repositorio.BuscarPet(petId, entidadeId);
         }
+
+        public IEnumerable<Pet> BuscarPets(string filtro, decimal? lat, decimal? lng)
+        {
+            return _repositorio.BuscarPets(filtro, lat, lng);
+        }
     }
 }
