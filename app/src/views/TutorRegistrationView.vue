@@ -102,6 +102,9 @@
 								v-model="model.cpf"
 								:rules="[() => !!model.cpf || 'Campo obrigatório']"
 								label="CPF*"
+								counter="11"
+								maxlength="11"
+								number
 								outlined
 								dense
 							></v-text-field>
@@ -193,13 +196,14 @@
 							cols="12"
 							sm="4"
 						>
-							<v-text-field
+							<v-combobox
 								v-model="model.uf"
-								:rules="[() => !!model.uf || 'Campo obrigatório']"
 								label="Estado*"
+								:items="estados"
 								outlined
+								:return-object="false"
 								dense
-							></v-text-field>
+							></v-combobox>
 						</v-col>
 
 					</v-row>
@@ -212,6 +216,7 @@
 								v-model="model.cep"
 								:rules="[() => !!model.cep || 'Campo obrigatório']"
 								label="CEP*"
+								type="number"
 								outlined
 								dense
 							></v-text-field>
@@ -350,7 +355,7 @@
 
 <script>
 
-import { listaTiposAnimais, pesquisarRacas, portePetsOptions, sexoOptions, estadoCivilOptions, quantidadePessoasOptions } from '../services/listasService.js'
+import { listaTiposAnimais, pesquisarRacas, portePetsOptions, sexoOptions, estadoCivilOptions, quantidadePessoasOptions, estadosOptions } from '../services/listasService.js'
 import { atualizarPerfilTutor, marcarPerfilCompleto, getPerfilTutor } from '../services/accountService.js'
 
 export default {
@@ -393,22 +398,23 @@ export default {
 		porteOptions: portePetsOptions,
 		pesquisarRaca: '',
 		racasOptions: [],
-		isLoadingRaca: false
+		isLoadingRaca: false,
+		estados: estadosOptions
 	}),
 	created() {
-		listaTiposAnimais().then(({data}) => {
-			data.forEach(element => {
-				this.tiposAnimaisOptions.push({
-					value: element.id,
-					text: element.descricao
-				})
-			});
-		})
+		// listaTiposAnimais().then(({data}) => {
+		// 	data.forEach(element => {
+		// 		this.tiposAnimaisOptions.push({
+		// 			value: element.id,
+		// 			text: element.descricao
+		// 		})
+		// 	});
+		// })
 	},
 	mounted() {
-		getPerfilTutor().then(({data}) => {
-			this.model = data;
-		})
+		// getPerfilTutor().then(({data}) => {
+		// 	this.model = data;
+		// })
 
 	},
 	methods: {
