@@ -130,6 +130,7 @@
             
 </template>
 <script>
+import { trataErro } from '../services/api.js'
 import { criarContaTutor, criarContaRepresentante, registrarTokenUsuario } from '../services/accountService.js'
 export default {
     name: 'DialogCreateAccount',
@@ -184,11 +185,7 @@ export default {
                     this.$root.$emit('loggedOn', data);
                     this.$emit('close')
                 }).catch(error => {
-                    if (error.response && error.response.data) {
-                        this.$toasted.error(error.response.data)
-                    } else {
-                        this.$toasted.error(error)
-                    }
+                    trataErro(this, error)
                 })
             }
         }

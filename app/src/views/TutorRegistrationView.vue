@@ -337,12 +337,12 @@
 					</v-btn>
 					<v-spacer></v-spacer>
 					<v-btn
-						:disabled="this.currentStep === 1"
+						:disabled="currentStep === 1"
 						:loading="isLoading"
 						class="white--text"
 						color="grey"
 						depressed
-						@click="this.currentStep -=  1"
+						@click="currentStep -=  1"
 					>
 						VOLTAR
 					</v-btn>
@@ -354,7 +354,7 @@
 						depressed
 						@click="nextStep()"
 					>
-						{{ this.currentStep === 3 == 0 ? 'PRÓXIMO' : 'SALVAR' }}
+						{{ currentStep === 3 == 0 ? 'PRÓXIMO' : 'SALVAR' }}
 					</v-btn>
 				</v-card-actions>
 			</v-form> 
@@ -367,6 +367,7 @@
 
 import { listaTiposAnimais, pesquisarRacas, portePetsOptions, sexoOptions, estadoCivilOptions, quantidadePessoasOptions, estadosOptions } from '../services/listasService.js'
 import { atualizarPerfilTutor, marcarPerfilCompleto, getPerfilTutor } from '../services/accountService.js'
+import { trataErro } from '../services/api.js'
 
 export default {
 	name: 'TutorRegistration',
@@ -418,11 +419,16 @@ export default {
 					text: element.descricao
 				})
 			});
+		}).catch(error => {
+			trataErro(this, error)
 		})
 	},
 	mounted() {
-		getPerfilTutor().then(({data}) => {
+		getPerfilTutor()
+		.then(({data}) => {
 			this.model = data;
+		}).catch(error => {
+			trataErro(this, error)
 		})
 
 	},
@@ -432,8 +438,9 @@ export default {
 				atualizarPerfilTutor(this.model).then(() => {
 					marcarPerfilCompleto()
 					this.$root.$emit('perfilCompleto')
+					this.$toasted.success('Perfil salvo com sucesso.');
 				}).catch(error => {
-					console.log(error)
+					trataErro(this, error)
 				})
 				return
 			}
@@ -455,7 +462,11 @@ export default {
 			this.isLoadingRaca = true;
 			pesquisarRacas(this.model.tipoAnimalId, val).then(({data}) => {
 				this.racasOptions = data;
-			}).finally(() => {
+			})
+			.catch(error => {
+				trataErro(this, error)
+			})
+			.finally(() => {
 				this.isLoadingRaca = false;
 			})
 		},

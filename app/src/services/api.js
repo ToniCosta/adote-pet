@@ -48,6 +48,15 @@ const apiService = (isFormData = false) => {
     return http;
   };
   
+
+
   export const api = apiService();
   export const apiFormData = apiService(true);
-  
+  export const trataErro = (instance, error) => {
+    console.log(error)
+    if (error.response && error.response.data) {
+      instance.$toasted.error(error.response.data)
+    } else {
+      instance.$toasted.error(error)
+    }
+  }  

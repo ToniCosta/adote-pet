@@ -212,6 +212,7 @@
 </template>
 
 <script>
+import { trataErro } from '../services/api.js'
 import { listaTiposAnimais, pesquisarRacas, pesquisarCidades, portePetsOptions, tamanhoPeloOptions } from '../services/listasService.js'
 import { criarPet, buscarPetEditar } from '../services/petService.js'
 
@@ -255,6 +256,8 @@ export default {
 					text: element.descricao
 				})
 			});
+		}).catch(error => {
+			trataErro(this, error)
 		})
 		if (this.$route.params.id) {
 			buscarPetEditar(this.$route.params.id).then(({data}) => {
@@ -265,6 +268,8 @@ export default {
 					{ descricao: data.raca, id: data.racaId }
 				]
 				this.model = data;
+			}).catch(error => {
+				trataErro(this, error)
 			})
 		}
 	},
@@ -285,9 +290,14 @@ export default {
 					bodyFormData.append(ele, this.model[ele]);
 				})
 				bodyFormData.append('image', this.file); 
-				criarPet(bodyFormData).then(({data})=> {
-					console.log(data)
-				}).finally(() => {
+				criarPet(bodyFormData).then(() => {
+					this.$router.push({name: 'petsInstituicao'})
+					this.$toasted.success('Pet cadastrado com sucesso.')
+				})
+				.catch(error => {
+					trataErro(this, error)
+				})
+				.finally(() => {
 					this.isLoading = false;
 				})
 			} else {
@@ -305,7 +315,11 @@ export default {
 			this.isLoading = true;
 			pesquisarRacas(this.model.tipoAnimalId, val).then(({data}) => {
 				this.racasOptions = data;
-			}).finally(() => {
+			})
+			.catch(error => {
+				trataErro(this, error)
+			})
+			.finally(() => {
 				this.isLoading = false;
 			})
 		},
@@ -317,7 +331,11 @@ export default {
 			this.isLoadingCidades = true;
 			pesquisarCidades(val).then(({data}) => {
 				this.cidadesOptions = data;
-			}).finally(() => {
+			})
+			.catch(error => {
+				trataErro(error)
+			})
+			.finally(() => {
 				this.isLoadingCidades = false;
 			})
 		}

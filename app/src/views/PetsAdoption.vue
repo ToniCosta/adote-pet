@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { trataErro } from '../services/api.js'
 import ListaAnimais from '../components/ListaAnimais.vue'
 import { buscarPets } from '../services/petService.js'
 
@@ -55,7 +56,7 @@ export default {
 					this.items = data
 				})
 				.catch(err => {
-					console.log(err)
+					trataErro(this, err)
 				})
 				.finally(() => {
 					this.isLoading = false;

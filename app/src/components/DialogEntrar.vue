@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { trataErro } from '../services/api.js'
 import { fazerLogin, registrarTokenUsuario } from '../services/accountService.js'
 export default {
     name: 'DialogEntrar',
@@ -86,12 +87,7 @@ export default {
                 this.$root.$emit('loggedOn', data);
                 this.$emit('close')
             }).catch(error => {
-                console.log(error)
-                if (error.response && error.response.data) {
-                    this.$toasted.error(error.response.data)
-                } else {
-                    this.$toasted.error(error)
-                }
+                trataErro(this, error)
             })
         }
     }

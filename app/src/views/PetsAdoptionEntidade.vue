@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { trataErro } from '../services/api.js'
 import ListaAnimais from '../components/ListaAnimais.vue'
 import { listarPetsEntidade } from '../services/petService.js'
 
@@ -52,7 +53,11 @@ export default {
 		listarPetsEntidade().then(({data}) => {
 			this.list = data
 			this.listFiltered = [...this.list]
-		}).finally(() => {
+		})
+		.catch(error => {
+			trataErro(this, error)
+		})
+		.finally(() => {
 			this.isLoading = false;
 		})
 	},
