@@ -26,8 +26,8 @@ namespace Adotepet.Api.Servicos
             {
                 viewModel.Image.CopyTo(fileStream);
             }
-
-            return _repositorio.CriarPet(viewModel, entidadeId, savedAs);
+            GeolocationService.BuscarGeolocalizacao(viewModel.Localizacao, out var lat, out var lng);
+            return _repositorio.CriarPet(viewModel, entidadeId, savedAs, lat, lng);
         }
 
         public IEnumerable<Pet> ListarPetsEntidade(int entidadeId)

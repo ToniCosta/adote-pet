@@ -16,5 +16,6 @@
 
         public int? EntidadeId { get; set; }
         public int? TutorId { get; set; }
+        public bool CadastroPreenchido { get; set; }
     }
 }

@@ -9,10 +9,12 @@ namespace Adotepet.Api.Repositorios
     {
         public PetRepositorio(MySqlConnection connection) : base(connection) { }
 
-        public int CriarPet(CriarPetViewModel viewModel, int entidadeId, string foto)
+        public int CriarPet(CriarPetViewModel viewModel, int entidadeId, string foto, decimal? latitude, decimal? longitude)
         {
-            var query = "insert into pets(entidade_id, nome, cor, tamanho_pelo, tipo_animal_id, raca_id, porte, peso, idade, comportamento, localizacao, descricao, foto) " +
-                "values (@entidade_id, @nome, @cor, @tamanho_pelo, @tipo_animal_id, @raca_id, @porte, @peso, @idade, @comportamento, @localizacao, @descricao, @foto)";
+            var query = "insert into pets(entidade_id, nome, cor, tamanho_pelo, tipo_animal_id, raca_id, porte, peso, " +
+                " idade, comportamento, localizacao, descricao, foto, status_pet, latitude, longitude) " +
+                " values (@entidade_id, @nome, @cor, @tamanho_pelo, @tipo_animal_id, @raca_id, @porte, @peso, " +
+                " @idade, @comportamento, @localizacao, @descricao, @foto, @status_pet, @latitude, @longitude)";
 
             return ExecuteInsert(
                 query,
@@ -29,7 +31,10 @@ namespace Adotepet.Api.Repositorios
                         new("@comportamento", viewModel.Comportamento),
                         new("@localizacao", viewModel.Localizacao),
                         new("@descricao", viewModel.Descricao),
-                        new("@foto", foto)
+                        new("@foto", foto),
+                        new("@status_pet", Pet.STATUS_PARA_ADOCAO),
+                        new("@latitude", latitude),
+                        new("@longitude", longitude)
                 }
             );
         }
