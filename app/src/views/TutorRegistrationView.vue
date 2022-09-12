@@ -337,6 +337,16 @@
 					</v-btn>
 					<v-spacer></v-spacer>
 					<v-btn
+						:disabled="this.currentStep === 1"
+						:loading="isLoading"
+						class="white--text"
+						color="grey"
+						depressed
+						@click="this.currentStep -=  1"
+					>
+						VOLTAR
+					</v-btn>
+					<v-btn
 						:disabled="!isValid"
 						:loading="isLoading"
 						class="white--text"
@@ -391,7 +401,6 @@ export default {
 		},
 		isValid: false,
 		isLoading: false,
-		steps: 1,
 		currentStep: 1,
 		estadoCivil: estadoCivilOptions,
 		sexo: sexoOptions,
