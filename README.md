@@ -1,4 +1,9 @@
 # Adote Pet [PI SENAC]
+O repositório git do projeto está em https://github.com/ToniCosta/adote-pet
+
+No youtube foram gravados 3 curtos vídeos explicativos que podem ser acessados na playlist abaixo:
+https://www.youtube.com/watch?v=gdHVZdphu3A&list=PL_6glhopLcKCruEpg5kpbZoBqyGYm9Ajj
+
 ### Autores
 Grupo 01
 - Antônio Simões da Costa Neto
@@ -6,7 +11,6 @@ Grupo 01
 - Elton Douglas Souza
 - Felipe Carneiro dos Anjos
 - Vinícius Dumbra
-
 
 ## Sobre o projeto
 

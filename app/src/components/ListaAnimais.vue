@@ -53,8 +53,8 @@
                     <v-container class="pb-0">
                         <v-row>
                             <v-col cols="6">
-                                <div style="height:321px; width: 274px;">
-                                    <img :src="getFotoUrl(itensDetails.foto)" style="width: auto;height: 100%;" />
+                                <div style="height:321px; width: 274px; margin: auto;">
+                                    <img :src="getFotoUrl(itensDetails.foto)" style="max-width: 100%;max-height: 100%;" />
                                 </div>
                             </v-col>
                             <v-col cols="6">
@@ -97,7 +97,7 @@
                     </div>
                     <v-spacer></v-spacer>
 
-                    <v-btn v-if="habilitaAdotar" color="blue darken-1" text @click="loginTutor()">
+                    <v-btn v-if="habilitaAdotar" color="blue darken-1" text @click="adotar()">
                         Quero adotar agora
                     </v-btn>
                 </v-card-actions>
@@ -142,6 +142,9 @@ export default {
         },
         getFotoUrl(foto) {
             return `${process.env.VUE_APP_APIURL}api/pets/foto?foto=${foto}`
+        },
+        adotar() {
+            this.$toasted.info('Funcionalidade não implementada');
         }
     }
 }
