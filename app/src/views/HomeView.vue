@@ -22,6 +22,7 @@
 			<v-card
 			class="mx-auto"
 			max-width="550"
+			min-height="232"
 			outlined
 			>
 			<v-list-item-avatar
