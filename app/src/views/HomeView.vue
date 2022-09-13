@@ -1,7 +1,7 @@
 <template>
     <v-container>
     <v-row class="text-center">
-		<v-col cols="5">
+		<v-col cols="12" sm="5">
 			<h1 class="text-left display-3 font-weight-medium">Encontre um novo<br/>pet para você!</h1>
 			<h2 class="text-left headline mt-8 mb-12">Adotar ficou mais fácil e rápido.</h2>
 			<v-text-field
@@ -13,21 +13,22 @@
 			></v-text-field>
 		</v-col>
 		<v-col cols="1"></v-col>
-		<v-col cols="6" class="px-0 text-right">
-			<img src="@/assets/pet-home.png" />          
+		<v-col cols="12" sm="6" class="px-0 text-right">
+			<img src="@/assets/pet-home.png" style="width:100%" />          
 		</v-col>
     </v-row>
     <v-row dense>
-		<v-col cols="4">
+		<v-col cols="12" sm="4">
 			<v-card
-			class="mx-auto"
-			max-width="550"
-			min-height="232"
-			outlined
+				class="mx-auto"
+				max-width="550"
+				min-height="232"
+				outlined
 			>
 			<v-list-item-avatar
 				tile
 				size="70"
+				class="ml-4"
 			>
 				<img src="@/assets/icons/icon-ache-pet.svg" />
 			</v-list-item-avatar>
@@ -50,15 +51,17 @@
 			</v-card-actions>
 			</v-card>
 		</v-col>
-		<v-col cols="4">
+		<v-col cols="12" sm="4">
 			<v-card
 				class="mx-auto"
-				max-width="344"
+				max-width="550"
+				min-height="232"
 				outlined
 			>
 			<v-list-item-avatar
 				tile
-				size="70"            
+				size="70"
+				class="ml-4"          
 			>
 				<img src="@/assets/icons/icon-avaliacao-adocao.svg" />          
 			</v-list-item-avatar>
@@ -72,16 +75,17 @@
 			</v-list-item>
 			</v-card>
 		</v-col>
-		<v-col cols="4">
+		<v-col cols="12" sm="4">
 			<v-card
 				class="mx-auto"
-				max-width="344"
+				max-width="550"
+				min-height="232"
 				outlined
 			>
 				<v-list-item-avatar
 					tile
 					size="70"
-					class="mx-0"
+					class="mx-0 ml-4"
 				>
 					<img src="@/assets/icons/icon-adocao-completa.svg" />
 				</v-list-item-avatar>
