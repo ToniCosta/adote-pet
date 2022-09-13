@@ -21,7 +21,7 @@
 		<v-col cols="4">
 			<v-card
 			class="mx-auto"
-			max-width="344"
+			max-width="550"
 			outlined
 			>
 			<v-list-item-avatar
