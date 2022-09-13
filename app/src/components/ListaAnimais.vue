@@ -3,7 +3,7 @@
 
         <v-row class="" dense>
             <v-col lg="4" xs="6" v-for="item in list" :key="item.id">
-                <v-card class="mx-auto mb-8" max-width="300" outlined>
+                <v-card class="mx-auto mb-8" max-width="400" outlined>
                     <v-list-item three-line>
                         <v-list-item-content>
                             <div class="text-h5 mb-1">
